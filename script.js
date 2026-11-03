@@ -50,9 +50,7 @@ function drawMediaConnections() {
   ['prompt', 'reference', 'style'].forEach(name => {
     const from = point(`#chain-${name} .out`);
     const bend = Math.max(24, (to.x - from.x) * .45);
-    const path = name === 'style'
-      ? `M ${from.x} ${from.y} V ${from.y - 16} H ${to.x - 16} Q ${to.x - 8} ${from.y - 16} ${to.x - 8} ${from.y - 8} V ${to.y} H ${to.x}`
-      : `M ${from.x} ${from.y} C ${from.x + bend} ${from.y} ${to.x - bend} ${to.y} ${to.x} ${to.y}`;
+    const path = `M ${from.x} ${from.y} C ${from.x + bend} ${from.y} ${to.x - bend} ${to.y} ${to.x} ${to.y}`;
     $(`#chain-${name}-edge`).setAttribute('d', path);
   });
 }
