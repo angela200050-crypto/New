@@ -758,3 +758,6 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--accen
 
 /* Equal top and bottom margins for the closing content and illustration. */
 @media(min-width:901px){.closing{padding-top:56px;padding-bottom:56px}.closing-visual{transform:translateY(-50%)}}
+
+/* Let the closing copy use the spare space before the illustration. */
+@media(min-width:1200px){.closing-body{width:calc(100% + 90px)}.closing-body>p{width:100%;max-width:none;text-wrap:normal}}
