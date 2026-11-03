@@ -34,3 +34,15 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--accen
 .choice-buttons button{min-height:44px}
 .stage-actions{display:flex;align-items:center;gap:22px;flex-wrap:wrap}.stage-actions #compare-button{color:var(--accent)}.stage-actions #compare-button[hidden]{display:none}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.camera-push,.camera-track{animation:none!important}.story-card:hover,.story-card:hover .story-image img{transform:none}}
+
+/* Keep the reading order consistent: heading, explanation, action, then examples. */
+.intro-heading{display:block;margin-bottom:48px}
+.intro h1{max-width:none;font-size:clamp(45px,5.1vw,76px);line-height:1.08;text-wrap:initial;white-space:nowrap}
+.intro-aside{max-width:760px;margin-top:23px;padding-bottom:0}
+.intro-aside p{max-width:720px;margin-bottom:22px}
+.section-heading{display:block}
+.section-heading>p{max-width:690px;margin:18px 0 0}
+.output-intro{display:block}
+.output-intro>p:last-child{max-width:680px;margin-top:12px}
+@media(max-width:900px){.intro h1{white-space:normal;font-size:clamp(47px,7.2vw,68px)}.intro-aside{margin-top:22px}}
+@media(max-width:650px){.intro h1{font-size:clamp(43px,11.7vw,58px)}.intro-heading{margin-bottom:36px}.section-heading>p{margin-top:16px}}
