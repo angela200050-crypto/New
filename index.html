@@ -4,41 +4,105 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#090b12">
-  <title>Город в новом свете — исследуйте историю кадра</title>
-  <meta name="description" content="Интерактивный прототип: исследуйте ноды, измените свет и увидьте, как решение проходит через граф к результату.">
+  <title>Один объект — несколько продолжений · интерактивная история</title>
+  <meta name="description" content="Интерактивная история о нодовой системе: выберите кадр, измените место или свет и проследите путь решения до результата.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="topbar"><a class="brand" href="#top" aria-label="Город в новом свете — наверх"><span class="brand-mark">◈</span> ГОРОД / В НОВОМ СВЕТЕ</a><span class="top-note">История одного трамвая <span class="top-index">№ 001</span></span></header>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Город в новом свете — наверх"><span class="brand-mark" aria-hidden="true">◈</span> ГОРОД / В НОВОМ СВЕТЕ</a>
+    <a class="top-link" href="#lab">Как это работает <span class="arrow-icon" aria-hidden="true"></span></a>
+  </header>
   <main id="top">
     <section class="intro wrap" aria-labelledby="page-title">
-      <div class="intro-copy"><p class="eyebrow"><span class="eyebrow-dot"></span> ИСТОРИЯ / КАДР 01</p><h1 id="page-title">Один объект — <em>несколько продолжений.</em></h1><p class="lead">В первом кадре трамвай едет через ночной город. Что будет дальше: рассвет на знакомой улице или дорога к морю? Выберите одно решение и посмотрите, как из него рождается новый кадр.</p><button class="primary" id="reveal-button" type="button">Выбрать продолжение <span aria-hidden="true">↗</span></button><p class="hint">Начните с места действия</p></div>
-      <div class="hero-gallery" aria-label="Три результата с одним трамваем">
-        <figure class="hero-shot hero-shot-main"><img src="assets/paper-city/night.png" alt="Трамвай на ночной улице старого города" fetchpriority="high"><figcaption><span>01 / Ночной город</span><small>Исходный результат</small></figcaption></figure>
-        <figure class="hero-shot hero-shot-side"><img src="assets/paper-city/dawn.png" alt="Тот же трамвай и город на рассвете"><figcaption>02 / Рассвет</figcaption></figure>
-        <figure class="hero-shot hero-shot-side"><img src="assets/paper-city/coast.png" alt="Тот же трамвай на приморской набережной"><figcaption>03 / У моря</figcaption></figure>
-      </div>
-    </section>
-    <section class="lab wrap" id="lab" aria-labelledby="lab-title">
-      <div class="section-head"><div><p class="eyebrow">ИСТОРИЯ / ЗА КАДРОМ</p><h2 id="lab-title">Как рождается<br><em>следующий кадр</em></h2></div><p class="section-aside">Место, герой, свет и композиция соединяются в один результат. Сначала отправьте трамвай к морю, затем попробуйте изменить освещение.</p></div>
-      <div class="step-tabs" role="group" aria-label="Выбор этапа"><button class="step-tab" data-node="city" type="button"><i></i> Место</button><button class="step-tab" data-node="tram" type="button"><i></i> Трамвай</button><button class="step-tab" data-node="light" type="button"><i></i> Свет</button><button class="step-tab" data-node="motion" type="button"><i></i> Движение</button><button class="step-tab" data-node="result" type="button"><i></i> Результат</button></div>
-      <div class="stage" id="stage">
-        <div class="stage-grid" aria-hidden="true"></div>
-        <svg class="connections" viewBox="0 0 1000 580" preserveAspectRatio="none" aria-hidden="true"><path class="route route-city" d="M315 125 C445 125 420 275 615 275"/><path class="route route-tram" d="M315 255 C465 255 455 285 615 285"/><path class="route route-light" d="M315 385 C440 385 435 295 615 295"/><path class="route route-motion" d="M315 505 C465 505 460 305 615 305"/><circle class="route-ambient" id="route-ambient" r="3"/><circle class="route-packet" id="route-packet" r="6" cx="315" cy="385"/></svg>
-        <div class="node-stack" id="node-stack">
-          <button class="node-card" data-node="city" type="button"><span class="node-icon">01</span><span><small>01 / МЕСТО</small><strong>Старый город</strong></span><span class="node-port" aria-hidden="true"></span></button>
-          <button class="node-card" data-node="tram" type="button"><span class="node-icon">02</span><span><small>02 / ГЕРОЙ</small><strong>Городской трамвай</strong></span><span class="node-port" aria-hidden="true"></span></button>
-          <button class="node-card" data-node="light" type="button"><span class="node-icon">03</span><span><small>03 / АТМОСФЕРА</small><strong>Ночной свет</strong></span><span class="node-port" aria-hidden="true"></span></button>
-          <button class="node-card" data-node="motion" type="button"><span class="node-icon">04</span><span><small>04 / КОМПОЗИЦИЯ</small><strong>Путь взгляда</strong></span><span class="node-port" aria-hidden="true"></span></button>
+      <div class="intro-heading">
+        <div>
+          <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> ИНТЕРАКТИВНАЯ ИСТОРИЯ / НОДОВАЯ СИСТЕМА</p>
+          <h1 id="page-title">Один объект — <em>несколько продолжений.</em></h1>
         </div>
-        <div class="output" id="output"><div class="output-label"><span><span class="live-dot"></span> 05 / РЕЗУЛЬТАТ</span><span id="output-time">НОЧЬ</span></div><div class="output-image"><img id="output-image" src="assets/paper-city/night.png" alt="Ночной город с трамваем"><span class="output-overlay">ГОРОД / 01</span></div><div class="output-foot"><span>Все решения встречаются здесь.</span><span class="output-symbol">↗</span></div></div>
-        <div class="node-info" id="node-info" aria-live="polite"><span class="node-info-index" id="info-index">03 / АТМОСФЕРА</span><h3 id="info-title">Ночной свет</h3><p id="info-text">Время суток меняет настроение сцены. Выберите другое освещение и посмотрите, что останется прежним.</p><div class="light-controls" id="light-controls" role="group" aria-label="Время суток"><button id="night-button" type="button" aria-pressed="true">Ночь</button><button id="dawn-button" type="button" aria-pressed="false">Рассвет</button></div><div class="light-controls" id="location-controls" role="group" aria-label="Локация"><button id="city-button" type="button" aria-pressed="true">Старый город</button><button id="coast-button" type="button" aria-pressed="false">У моря</button></div></div>
+        <div class="intro-aside">
+          <p>Один трамвай появляется в разных кадрах. Меняйте место, свет и движение камеры — герой остаётся узнаваемым. Выберите кадр и посмотрите, как он собран.</p>
+          <button class="primary" id="reveal-button" type="button">Разобрать кадр <span class="arrow-icon" aria-hidden="true"></span></button>
+        </div>
       </div>
-      <div class="stage-footer"><span><span class="legend-line"></span> Световой импульс показывает путь изменения до результата</span><button class="text-button" id="reset-button" type="button">Вернуть начало ↺</button></div>
+      <div class="storyboard" id="storyboard" role="group" aria-label="Три кадра истории">
+        <button class="story-card" type="button" data-shot="0" aria-pressed="false">
+          <span class="story-image"><img src="assets/paper-city/night.webp" alt="Бордовый трамвай на ночной улице старого города" fetchpriority="high"><span class="story-image-index">01 / НАЧАЛО</span></span>
+          <span class="story-card-body"><span class="story-card-top"><strong>Ночной город</strong><span class="story-dot" aria-hidden="true"></span></span><span class="story-description">Знакомый трамвай начинает путь в старом городе.</span><span class="story-tags"><span>Старый город</span><span>Ночь</span></span></span>
+        </button>
+        <button class="story-card" type="button" data-shot="1" aria-pressed="false">
+          <span class="story-image"><img src="assets/paper-city/dawn.webp" alt="Тот же трамвай в старом городе на рассвете"><span class="story-image-index">02 / ПРОДОЛЖЕНИЕ</span></span>
+          <span class="story-card-body"><span class="story-card-top"><strong>Первый свет</strong><span class="story-dot" aria-hidden="true"></span></span><span class="story-description">Тот же маршрут встречает новый день.</span><span class="story-tags"><span>Старый город</span><span>Рассвет</span></span></span>
+        </button>
+        <button class="story-card" type="button" data-shot="2" aria-pressed="true">
+          <span class="story-image"><img src="assets/paper-city/coast.webp" alt="Тот же трамвай на приморской набережной на рассвете"><span class="story-image-index">03 / НОВЫЙ МАРШРУТ</span></span>
+          <span class="story-card-body"><span class="story-card-top"><strong>Дорога к морю</strong><span class="story-dot" aria-hidden="true"></span></span><span class="story-description">Новый маршрут и плавный наезд на героя.</span><span class="story-tags"><span>У моря</span><span>Рассвет</span><span>Наезд</span></span></span>
+        </button>
+      </div>
+      <p class="story-footnote">Нажмите на кадр, чтобы раскрыть его настройки <span aria-hidden="true">↓</span></p>
     </section>
-    <section class="compare wrap" id="compare" aria-labelledby="compare-title" hidden><div class="compare-copy"><p class="eyebrow">ОДНО ИЗМЕНЕНИЕ / НОВЫЙ КАДР</p><h2 id="compare-title">Место изменилось.<br><em>Герой остался.</em></h2><p>Вы переместили трамвай из старого города к морю. Та же нода героя участвует в новом результате.</p><button class="secondary" id="replay-button" type="button">Повторить эксперимент <span aria-hidden="true">↗</span></button></div><div class="compare-view"><div class="compare-frame"><img id="compare-after-image" src="assets/paper-city/coast.png" alt="Тот же трамвай у моря"><div class="compare-before" id="compare-before"><img src="assets/paper-city/night.png" alt="Ночная версия той же сцены"></div><span class="compare-divider" id="compare-divider" aria-hidden="true"></span></div><label for="compare-slider">Сравнить два результата</label><input id="compare-slider" type="range" min="0" max="100" value="50" aria-label="Сравнить два результата"><div class="compare-ends"><span id="compare-left-label">СТАРЫЙ ГОРОД</span><span id="compare-right-label">У МОРЯ</span></div></div></section>
-    <section class="closing wrap"><p class="eyebrow">ИДЕЯ НОДОВОЙ СИСТЕМЫ</p><h2>Меняйте часть.<br><em>Сохраняйте целое.</em></h2><p>Каждая нода отвечает за своё решение. Связи показывают, как решения складываются в результат.</p><a href="#lab" class="secondary">Исследовать сцену ещё раз <span aria-hidden="true">↑</span></a></section>
-  </main><footer class="footer wrap"><span>ГОРОД / В НОВОМ СВЕТЕ</span><span>Концепт интерактивной страницы · 2026</span></footer>
+
+    <section class="lab wrap" id="lab" aria-labelledby="lab-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">ЗА КАДРОМ / ИНТЕРАКТИВНАЯ СХЕМА</p><h2 id="lab-title">Как собирается <em>кадр 03.</em></h2></div>
+        <p>Каждая нода отвечает за одно решение. Связи показывают, как герой, место, свет и движение камеры складываются в выбранный кадр.</p>
+      </div>
+      <div class="flow-stage" id="flow-stage" aria-label="Нодовая схема выбранного кадра">
+        <div class="stage-grid" aria-hidden="true"></div>
+        <svg class="flow-connections" id="flow-connections" aria-hidden="true">
+          <path id="edge-hero-place" class="flow-edge"/><path id="edge-hero-light" class="flow-edge"/><path id="edge-hero-camera" class="flow-edge"/><path id="edge-place-render" class="flow-edge"/><path id="edge-light-render" class="flow-edge"/><path id="edge-camera-render" class="flow-edge"/><path id="edge-render-result" class="flow-edge"/><circle id="flow-packet" class="flow-packet" r="6"/>
+        </svg>
+        <div class="flow-node hero-node" id="hero-node">
+          <div class="node-header"><span class="node-kicker">01 / ИСХОДНЫЙ ОБЪЕКТ</span><span class="node-check" aria-label="Сохранён">✓</span></div>
+          <div class="hero-reference"><img src="assets/paper-city/night.webp" alt="Референс бордового трамвая"></div>
+          <h3>Один и тот же трамвай</h3><p>Общий герой для всех кадров истории.</p><span class="node-port out" aria-hidden="true"></span>
+        </div>
+        <div class="choice-stack">
+          <div class="flow-node choice-node" id="place-node">
+            <div class="node-header"><span class="node-kicker">02 / МЕСТО</span><span class="node-type">СЦЕНА</span></div>
+            <h3>Где происходит действие?</h3><p>Изменится окружение выбранного кадра.</p>
+            <div class="choice-buttons" role="group" aria-label="Место действия"><button type="button" data-place="city" aria-pressed="false">Старый город</button><button type="button" data-place="coast" aria-pressed="true">У моря</button></div>
+            <span class="node-port in" aria-hidden="true"></span><span class="node-port out" aria-hidden="true"></span>
+          </div>
+          <div class="flow-node choice-node" id="light-node">
+            <div class="node-header"><span class="node-kicker">03 / СВЕТ</span><span class="node-type">АТМОСФЕРА</span></div>
+            <h3>Когда происходит действие?</h3><p>Изменится освещение, место сохранится.</p>
+            <div class="choice-buttons" role="group" aria-label="Время суток"><button type="button" data-light="night" aria-pressed="false">Ночь</button><button type="button" data-light="dawn" aria-pressed="true">Рассвет</button></div>
+            <span class="node-port in" aria-hidden="true"></span><span class="node-port out" aria-hidden="true"></span>
+          </div>
+          <div class="flow-node choice-node" id="camera-node">
+            <div class="node-header"><span class="node-kicker">04 / КАМЕРА</span><span class="node-type">ДВИЖЕНИЕ</span></div>
+            <h3>Как показать героя?</h3><p>Движение камеры меняет акцент кадра.</p>
+            <div class="choice-buttons" role="group" aria-label="Движение камеры"><button type="button" data-camera="wide" aria-pressed="false">Общий план</button><button type="button" data-camera="push" aria-pressed="true">Плавный наезд</button></div>
+            <span class="node-port in" aria-hidden="true"></span><span class="node-port out" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div class="flow-node render-node" id="render-node">
+          <div class="node-header"><span class="node-kicker">05 / СБОРКА КАДРА</span><span class="node-check" aria-label="Готово">✓</span></div>
+          <div class="render-symbol" aria-hidden="true"><span>◈</span></div>
+          <h3>Решения соединяются</h3><p>Один герой и три решения становятся новым кадром.</p>
+          <span class="render-state" id="render-state" aria-live="polite">Готово</span>
+          <span class="node-port in" aria-hidden="true"></span><span class="node-port out" aria-hidden="true"></span>
+        </div>
+        <div class="flow-node result-node" id="result-node">
+          <div class="node-header"><span class="node-kicker" id="result-index">06 / КАДР 03</span><span class="node-type">РЕЗУЛЬТАТ</span></div>
+          <div class="result-image"><img id="result-image" src="assets/paper-city/coast.webp" alt="Трамвай у моря на рассвете"></div>
+          <div class="result-caption"><strong id="result-title">Дорога к морю</strong><span id="result-settings">У моря · Рассвет</span></div>
+          <span class="node-port in" aria-hidden="true"></span>
+        </div>
+        <div class="mobile-flow" aria-hidden="true">Герой ↓ Место · Свет · Камера ↓ Сборка ↓ Кадр</div>
+      </div>
+      <div class="stage-footer"><p id="change-caption" aria-live="polite">Выбран кадр 03. Измените одну ноду: остальные решения сохранятся.</p><div class="stage-actions"><button class="text-button" id="compare-button" type="button" hidden>Сравнить версии ↓</button><button class="text-button" id="reset-button" type="button">Вернуть исходный кадр ↺</button></div></div>
+    </section>
+
+    <section class="compare wrap" id="compare" aria-labelledby="compare-title" hidden>
+      <div class="compare-copy"><p class="eyebrow">ДО / ПОСЛЕ</p><h2 id="compare-title">Изменился один шаг. <em>История продолжается.</em></h2><p id="compare-description">Сравните исходную и новую версии выбранного кадра.</p><button class="secondary" id="replay-button" type="button">Изменить другой кадр <span class="arrow-icon" aria-hidden="true"></span></button></div>
+      <div class="compare-view"><div class="compare-frame"><img id="compare-after-image" src="assets/paper-city/coast.webp" alt="Новая версия кадра"><div class="compare-before" id="compare-before"><img id="compare-before-image" src="assets/paper-city/coast.webp" alt="Исходная версия кадра"></div><span class="compare-divider" id="compare-divider" aria-hidden="true"></span></div><label for="compare-slider">Проведите, чтобы сравнить кадры</label><input id="compare-slider" type="range" min="0" max="100" value="50" aria-label="Сравнить исходный и изменённый кадры"><div class="compare-ends"><span>ИСХОДНЫЙ</span><span>НОВЫЙ</span></div></div>
+    </section>
+
+    <section class="closing wrap"><p class="eyebrow">ИДЕЯ НОДОВОЙ СИСТЕМЫ</p><h2>Меняйте часть.<br><em>Сохраняйте целое.</em></h2><p>Не нужно начинать историю заново. Выберите нужный кадр, измените одну ноду и проследите, как решение доходит до результата.</p><a class="secondary" href="#storyboard">Вернуться к истории <span aria-hidden="true">↑</span></a></section>
+  </main>
+  <footer class="footer wrap"><span>ГОРОД / В НОВОМ СВЕТЕ</span><span>Концепт интерактивной страницы · 2026</span></footer>
   <script src="script.js"></script>
 </body>
 </html>
