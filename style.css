@@ -771,22 +771,21 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--accen
 .route-card figcaption{display:flex;flex-direction:column;gap:7px;padding:15px 17px 17px}
 .route-card figcaption span{color:#b0dcc1;font-size:10px;font-weight:800;letter-spacing:.1em}
 .route-card figcaption strong{color:#fff;font-size:18px;line-height:1.25}
-.route-join{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;height:30px}
-.route-join:before{content:'';position:absolute;top:15px;left:calc((100% - 32px)/6);right:calc((100% - 32px)/6);height:1px;background:#6da88a}
-.route-join:after{content:'';position:absolute;top:15px;left:50%;height:15px;width:1px;background:#6da88a}
-.route-join span{position:relative;justify-self:center;width:1px;height:16px;background:#6da88a}
+.route-join{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;height:24px}
+.route-join:before{content:'';position:absolute;top:16px;left:calc((100% - 32px)/6);right:calc((100% - 32px)/6);height:1px;background:#6da88a}
+.route-join span{position:relative;justify-self:center;width:1px;height:17px;background:#6da88a}
 .route-join span:before{content:'';position:absolute;top:-4px;left:-4px;width:9px;height:9px;border-radius:50%;background:#90cfaa;box-shadow:0 0 0 4px #90cfaa20}
-.format-branch{margin-top:0;padding:23px;border:1px solid #46685a;border-radius:14px;background:#102019}
-.format-branch-heading{margin-bottom:18px;text-align:center}
+.format-branch{margin-top:0;padding:24px;border:1px solid #46685a;border-radius:14px;background:#102019}
+.format-branch-heading{margin-bottom:24px;text-align:center}
 .format-branch-heading span,.format-branch-outputs span{color:#b0dcc1;font-size:10px;font-weight:800;letter-spacing:.1em}
-.format-branch-heading strong{display:block;margin:7px 0 3px;color:#fff;font-size:21px;line-height:1.25}
+.format-branch-heading strong{display:block;margin:8px 0 6px;color:#fff;font-size:28px;line-height:1.2}
 .format-branch-heading p{margin:0;color:#d8e9dc;font-size:14px;line-height:1.45}
-.format-branch-outputs a{min-width:0;min-height:110px;padding:17px;border:1px solid #5a7075;border-top:3px solid #a6d6ba;border-radius:12px;background:linear-gradient(180deg,#1d2930,#151d25);box-shadow:0 10px 24px #0003}
+.format-branch-outputs a{min-width:0;min-height:110px;padding:17px;border:1px solid #5a7075;border-radius:12px;background:linear-gradient(180deg,#1d2930,#151d25);box-shadow:0 10px 24px #0003}
 .format-branch-outputs strong{display:block;margin:8px 0 5px;color:#fff;font-size:17px;line-height:1.25}
 .format-branch-outputs small{color:#d8e9dc;font-size:12px;line-height:1.4}
-.format-branch-outputs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.format-branch-outputs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .format-branch-outputs a{display:flex;flex-direction:column;justify-content:center;text-decoration:none;transition:border-color .2s,background .2s,transform .2s}
 .format-branch-outputs a:hover{border-color:#b8efd0;background:#25343c;transform:translateY(-3px)}
 #video-result,#audio-result,#script-result{scroll-margin-top:24px}
 @media(max-width:900px){.route-continuations{padding:24px}}
-@media(max-width:650px){.route-continuations{padding:18px;margin-top:22px}.route-intro{margin-bottom:18px}.route-intro h3{font-size:25px}.route-intro p{font-size:15px}.route-gallery{grid-template-columns:1fr;gap:12px}.route-card{display:grid;grid-template-columns:42% 1fr;min-height:122px}.route-card img{height:100%;aspect-ratio:auto}.route-card figcaption{justify-content:center;padding:12px}.route-card figcaption strong{font-size:15px}.route-join{display:none}.format-branch{margin-top:18px;padding:17px}.format-branch-heading{margin-bottom:15px}.format-branch-heading strong{font-size:18px}.format-branch-outputs{grid-template-columns:1fr}.format-branch-outputs a{min-height:82px;padding:13px 16px}}
+@media(max-width:650px){.route-continuations{padding:18px;margin-top:22px}.route-intro{margin-bottom:18px}.route-intro h3{font-size:25px}.route-intro p{font-size:15px}.route-gallery{grid-template-columns:1fr;gap:12px}.route-card{display:grid;grid-template-columns:42% 1fr;min-height:122px}.route-card img{height:100%;aspect-ratio:auto}.route-card figcaption{justify-content:center;padding:12px}.route-card figcaption strong{font-size:15px}.route-join{display:none}.format-branch{margin-top:18px;padding:18px}.format-branch-heading{margin-bottom:18px}.format-branch-heading strong{font-size:23px}.format-branch-outputs{grid-template-columns:1fr;gap:12px}.format-branch-outputs a{min-height:82px;padding:13px 16px}}

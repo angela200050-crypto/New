@@ -2,12 +2,12 @@ const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const prefersReducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const imagePath = (place, light) => {
-  const names = { 'city-night': 'night', 'city-dawn': 'dawn', 'city-day': 'city-day', 'coast-night': 'coast-night', 'coast-dawn': 'coast', 'coast-day': 'coast-day', 'mountain-night': 'mountain-night', 'mountain-dawn': 'mountain-dawn', 'mountain-day': 'mountain-day' };
+  const names = { 'city-night': 'night', 'city-dawn': 'dawn', 'city-day': 'city-street-day', 'coast-night': 'coast-night', 'coast-dawn': 'coast', 'coast-day': 'coast-day', 'mountain-night': 'mountain-night', 'mountain-dawn': 'mountain-dawn', 'mountain-day': 'mountain-day' };
   return `assets/paper-city/${names[`${place}-${light}`]}.webp`;
 };
 const placeName = place => ({ city: 'Старый город', coast: 'У моря', mountain: 'Горы' })[place];
 const lightName = light => ({ night: 'Ночь', dawn: 'Рассвет', day: 'День' })[light];
-const titles = { 'city-night': 'Ночной город', 'city-dawn': 'Первый свет', 'city-day': 'Город при свете дня', 'coast-night': 'Огни набережной', 'coast-dawn': 'Дорога к морю', 'coast-day': 'Солнечная набережная', 'mountain-night': 'Ночной перевал', 'mountain-dawn': 'Первые лучи в горах', 'mountain-day': 'Горный перевал' };
+const titles = { 'city-night': 'Ночной город', 'city-dawn': 'Первый свет', 'city-day': 'Улица старого города', 'coast-night': 'Огни набережной', 'coast-dawn': 'Дорога к морю', 'coast-day': 'Солнечная набережная', 'mountain-night': 'Ночной перевал', 'mountain-dawn': 'Первые лучи в горах', 'mountain-day': 'Горный перевал' };
 const initial = { place: 'mountain', light: 'day' };
 let settings = { ...initial };
 let connected = false;
