@@ -750,3 +750,11 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--accen
 .closing-body .closing-actions{margin:0}
 .closing-visual{grid-row:2}
 @media(max-width:650px){.closing-body{gap:28px}.closing-body>p{font-size:19px}.closing-visual{grid-column:1;grid-row:3}}
+
+/* Lift the illustration without making the closing card taller. */
+@media(min-width:901px){
+  .closing-visual{position:absolute;right:48px;top:50%;transform:translateY(-40%);width:calc((100% - 152px)*.8/2.3);max-width:330px;grid-area:auto}
+}
+
+/* Equal top and bottom margins for the closing content and illustration. */
+@media(min-width:901px){.closing{padding-top:56px;padding-bottom:56px}.closing-visual{transform:translateY(-50%)}}
