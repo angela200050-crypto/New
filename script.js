@@ -50,7 +50,10 @@ function drawMediaConnections() {
   ['prompt', 'reference', 'style'].forEach(name => {
     const from = point(`#chain-${name} .out`);
     const bend = Math.max(24, (to.x - from.x) * .45);
-    $(`#chain-${name}-edge`).setAttribute('d', `M ${from.x} ${from.y} C ${from.x + bend} ${from.y} ${to.x - bend} ${to.y} ${to.x} ${to.y}`);
+    const path = name === 'style'
+      ? `M ${from.x} ${from.y} V ${from.y - 16} H ${to.x - 16} Q ${to.x - 8} ${from.y - 16} ${to.x - 8} ${from.y - 8} V ${to.y} H ${to.x}`
+      : `M ${from.x} ${from.y} C ${from.x + bend} ${from.y} ${to.x - bend} ${to.y} ${to.x} ${to.y}`;
+    $(`#chain-${name}-edge`).setAttribute('d', path);
   });
 }
 window.addEventListener('resize', drawMediaConnections);
@@ -106,7 +109,11 @@ function initializeDemo() {
   $('#demo-empty').hidden = connected;
   $('#demo-result-content').hidden = !connected;
   $('#flow-stage').classList.toggle('is-connected', connected);
-  $('#connection-state').textContent = connected ? 'Подключено · герой сохраняется' : 'Ожидает подключения';
+  $('#connection-state').textContent = connected ? 'Подключено · герой сохраняется' : 'Этот трамвай станет основой вашего кадра';
+  $('#reset-button').hidden = !connected;
+  $('#add-video').hidden = true;
+  $('#demo-next-hint').hidden = false;
+  if (!connected) $('#change-caption').textContent = 'Первый шаг: подключите трамвай кнопкой справа.';
   $('#reference-port').setAttribute('aria-pressed', String(armed));
   $('#result-port').setAttribute('aria-disabled', String(!armed && !connected));
   requestAnimationFrame(drawDemo);
@@ -117,7 +124,7 @@ function connectDemo() {
   armed = false;
   initializeDemo();
   setStep('change');
-  $('#demo-hint').textContent = 'Связь создана. Измените место или свет — подсветится только затронутый шаг.';
+  $('#demo-hint').textContent = 'Теперь выберите другое место или время суток в карточках слева. Результат обновится справа.';
   $('#change-caption').textContent = 'Референс подключён. Первый кадр собран.';
   requestAnimationFrame(() => pulse('reference'));
 }
@@ -141,8 +148,10 @@ function animateChange(key) {
     image.classList.remove('is-revealing');
     void image.offsetWidth;
     image.classList.add('is-revealing');
-    $('#demo-hint').textContent = 'Результат обновлён. Теперь добавьте видео, чтобы продолжить процесс в новом формате.';
+    $('#demo-hint').textContent = 'Результат обновлён. Нажмите «Оживить кадр», чтобы добавить следующий шаг — видео.';
     setStep('video');
+    $('#add-video').hidden = false;
+    $('#demo-next-hint').hidden = true;
   }, prefersReducedMotion() ? 0 : 650);
 }
 function resetDemo() {
@@ -156,7 +165,7 @@ function resetDemo() {
   $('#demo-draft-edge').setAttribute('d', '');
   initializeDemo();
   setStep('connect');
-  $('#demo-hint').textContent = 'Нажмите на порт референса, затем на порт результата. Или перетащите связь между ними.';
+  $('#demo-hint').textContent = 'Шаг 1. Нажмите «Использовать этого героя», чтобы добавить референс в процесс.';
 }
 $('#reference-port').addEventListener('click', () => {
   if (connected) return;
@@ -197,6 +206,7 @@ $('#add-video').addEventListener('click', () => {
   clearTimeout(updateTimer);
   settings = { ...initial };
   renderResult();
+  $$('.choice-node').forEach(n => n.classList.remove('is-updating'));
   $('#demo-video-result').hidden = false;
   setStep('video');
   $('#demo-hint').textContent = 'Новая нода добавлена: дневной кадр в горах → видео. Нажмите воспроизведение, чтобы посмотреть результат.';
@@ -204,3 +214,5 @@ $('#add-video').addEventListener('click', () => {
 });
 window.addEventListener('resize', drawDemo);
 if ('ResizeObserver' in window) new ResizeObserver(drawDemo).observe($('#flow-stage'));
+
+$('#connect-demo').addEventListener('click', () => { armed = true; connectDemo(); });
