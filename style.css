@@ -644,3 +644,28 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--accen
   .generation-steps{flex:1;justify-content:space-between;gap:24px}
   .generation-steps li:not(:last-child):before{bottom:-24px}
 }
+
+/* The first example introduces the idea; details are optional. */
+.chain-heading>p:last-child{max-width:1060px}
+.generation-simple{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
+.generation-simple-symbol{font-size:40px;color:#90cfaa}
+.generation-simple-arrow{color:#90cfaa;font-size:24px}
+.generation-simple strong{font-size:19px;color:#fff}
+.generation-simple p{font-size:14px;line-height:1.6;margin:0}
+.node-details{margin-top:24px;border:1px solid #344150;border-radius:14px;padding:18px 24px;background:#101720}
+.node-details summary{cursor:pointer;color:#b0dcc1;font-size:15px;font-weight:600;min-height:24px}
+.node-details-content{padding-top:24px}
+.node-details .generation-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.node-details .generation-steps li:before{display:none}
+.node-details .generation-steps p{color:#fff;font-size:14px;line-height:1.6;margin:0}
+@media(min-width:1051px){
+  .chain-stage{grid-template-columns:minmax(0,1fr) minmax(0,.65fr) minmax(0,1.15fr);gap:40px}
+  .chain-inputs{gap:20px}
+  .chain-input{padding:18px}
+  .chain-ref{flex-direction:row;align-items:center}
+  .chain-ref img{width:140px;height:90px;flex:none}
+  .generation-node{justify-content:center}
+  .chain-preview{min-height:240px}
+}
+@media(max-width:1050px){.generation-simple{gap:12px}.generation-heading{margin-bottom:16px}}
+@media(max-width:650px){.node-details{padding:18px}.node-details .generation-steps{grid-template-columns:1fr;gap:24px}}
