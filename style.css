@@ -7,3 +7,22 @@
 @media(max-width:960px){.hero-gallery{height:480px}}@media(max-width:700px){.hero-gallery{height:435px;grid-template-columns:1fr 1fr;grid-template-rows:280px 145px;gap:9px}.hero-shot-main{grid-column:1/3;grid-row:1}.hero-shot-side{grid-row:2}.hero-shot figcaption{bottom:10px;left:11px;right:10px;font-size:10px}.hero-shot figcaption small{display:none}}
 
 .light-controls[hidden]{display:none}
+
+/* Motion follows the story: reveal the three possible frames, then trace a live node connection. */
+.hero-shot{animation:story-reveal .75s cubic-bezier(.2,.7,.2,1) both,story-beat 8s ease-in-out infinite;transition:transform .3s ease,border-color .3s ease}
+.hero-shot:nth-child(1){animation-delay:.1s,1.1s}.hero-shot:nth-child(2){animation-delay:.45s,3.7s}.hero-shot:nth-child(3){animation-delay:.8s,6.3s}
+.hero-shot:hover{transform:translateY(-5px);border-color:#d6a779}
+.hero-shot img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}.hero-shot:hover img{transform:scale(1.035)}
+@keyframes story-reveal{from{opacity:0;translate:0 22px;filter:brightness(.65)}to{opacity:1;translate:0 0;filter:brightness(1)}}
+@keyframes story-beat{0%,38%,100%{border-color:#37404b;box-shadow:0 25px 65px #0006}10%,22%{border-color:#dca76e;box-shadow:0 25px 65px #0006,0 0 30px #f4b46b3d}}
+.stage[data-active=city] .route-city,.stage[data-active=tram] .route-tram,.stage[data-active=light] .route-light,.stage[data-active=motion] .route-motion{stroke-dasharray:12 15;animation:route-flow 1.15s linear infinite}
+@keyframes route-flow{to{stroke-dashoffset:-27}}
+.node-card.active .node-port{animation:port-breathe 2.2s ease-in-out infinite}
+@keyframes port-breathe{50%{box-shadow:0 0 0 8px #f4b46b22,0 0 18px var(--accent)}}
+.route-ambient{fill:var(--accent);filter:drop-shadow(0 0 6px var(--accent));offset-path:path('M315 125 C445 125 420 275 615 275');animation:ambient-travel 3.3s ease-in-out infinite}
+.stage[data-active=result] .route-ambient{display:none}
+@keyframes ambient-travel{0%{opacity:0;offset-distance:0}18%{opacity:.8}80%{opacity:.8}100%{opacity:0;offset-distance:100%}}
+@keyframes travel{0%{opacity:0;offset-distance:0}18%,82%{opacity:1}100%{opacity:0;offset-distance:100%}}
+.compare:not([hidden]){animation:compare-enter .55s ease both}
+@keyframes compare-enter{from{opacity:0;translate:0 20px}to{opacity:1;translate:0 0}}
+@media(prefers-reduced-motion:reduce){.hero-shot,.route-ambient,.node-card.active .node-port,.stage[data-active=city] .route-city,.stage[data-active=tram] .route-tram,.stage[data-active=light] .route-light,.stage[data-active=motion] .route-motion,.compare:not([hidden]){animation:none}.hero-shot:hover,.hero-shot:hover img{transform:none}}

@@ -13,6 +13,7 @@ const infoText = $('#info-text');
 const outputImage = $('#output-image');
 const outputTime = $('#output-time');
 const packet = $('#route-packet');
+const ambient = $('#route-ambient');
 const compare = $('#compare');
 const slider = $('#compare-slider');
 const before = $('#compare-before');
@@ -21,10 +22,17 @@ const imagePath = name => `assets/paper-city/${name}.png`;
 let active = 'city';
 let variant = 'night';
 let changeTimer;
+const routes = {
+  city: "path('M315 125 C445 125 420 275 615 275')",
+  tram: "path('M315 255 C465 255 455 285 615 285')",
+  light: "path('M315 385 C440 385 435 295 615 295')",
+  motion: "path('M315 505 C465 505 460 305 615 305')"
+};
 
 function selectNode(node) {
   active = node;
   stage.dataset.active = node;
+  if (routes[node]) ambient.style.offsetPath = routes[node];
   const item = data[node];
   infoIndex.textContent = item.index;
   infoTitle.textContent = node === 'light' && variant === 'dawn' ? 'Рассветный свет' : node === 'city' && variant === 'coast' ? 'Приморская набережная' : item.title;
@@ -72,9 +80,7 @@ function setVariant(next, node) {
   selectNode(node);
   updateControls();
   packet.classList.remove('running');
-  packet.style.offsetPath = node === 'city'
-    ? "path('M315 125 C445 125 420 275 615 275')"
-    : "path('M315 385 C440 385 435 295 615 295')";
+  packet.style.offsetPath = routes[node];
   void packet.getBoundingClientRect();
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!reduced) packet.classList.add('running');
