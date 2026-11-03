@@ -153,3 +153,24 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--accen
 
 .intro-aside p,.output-intro>p:last-child,.chain-heading>p:last-child,.section-heading>p,.closing>p:not(.eyebrow){font-size:18px;line-height:1.55}
 @media(max-width:650px){.intro-aside p,.output-intro>p:last-child,.chain-heading>p:last-child,.section-heading>p,.closing>p:not(.eyebrow){font-size:16px}}
+
+/* Keep the complete source reference visible at every screen size. */
+.hero-reference{display:flex;align-items:center;aspect-ratio:1672/941;max-height:none;background:#101821}
+.hero-reference img{width:100%;height:100%;object-fit:cover;object-position:85% center;transform:none}
+@media(min-width:901px){.hero-reference{flex:1;aspect-ratio:auto}}
+
+/* Descriptions use white consistently throughout the page. */
+.intro-aside p,.story-description,.story-footnote,.output-copy p,
+.output-intro>p:last-child,.chain-heading>p:last-child,.section-heading>p,
+.flow-node p,.chain-node p,.chain-ref,.result-caption span,.stage-footer p,
+.closing>p:not(.eyebrow),.closing-steps,.story-tags span,.script-sheet p,.script-sheet small{color:#fff}
+.intro-aside p,.output-intro>p:last-child,.chain-heading>p:last-child,
+.section-heading>p,.closing>p:not(.eyebrow){font-size:22px;line-height:1.6}
+.intro-aside p{font-size:22px}
+.story-description,.output-copy p,.flow-node p,.chain-node p{font-size:14px;line-height:1.55}
+.result-caption span,.chain-ref,.stage-footer p,.story-footnote{font-size:14px;line-height:1.55}
+.script-sheet{background:linear-gradient(145deg,#24342e,#14231d);color:#fff;height:auto;min-height:220px;gap:18px}
+@media(max-width:650px){
+  .intro-aside p{font-size:19px}
+  .output-intro>p:last-child,.chain-heading>p:last-child,.section-heading>p,.closing>p:not(.eyebrow){font-size:19px}
+}
