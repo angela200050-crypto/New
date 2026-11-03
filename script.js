@@ -93,6 +93,10 @@ function drawDemo() {
   const to = point('#result-port');
   $('.demo-connections').setAttribute('viewBox', `0 0 ${bounds.width} ${bounds.height}`);
   ['reference', 'place', 'light'].forEach(name => {
+    if (!connected && name !== 'reference') {
+      $(`#demo-${name}-edge`).setAttribute('d', '');
+      return;
+    }
     const from = point(`#${name}-port`);
     const bend = Math.max(16, (to.x - from.x) * .5);
     $(`#demo-${name}-edge`).setAttribute('d', `M ${from.x} ${from.y} C ${from.x + bend} ${from.y} ${to.x - bend} ${to.y} ${to.x} ${to.y}`);
@@ -165,6 +169,7 @@ function resetDemo() {
   $('#demo-video-result').hidden = true;
   $$('.choice-node').forEach(n => n.classList.remove('is-updating'));
   $('#demo-draft-edge').setAttribute('d', '');
+  $$('.demo-connections path').forEach(path => path.classList.remove('is-flowing'));
   initializeDemo();
   setStep('connect');
   $('#demo-hint').textContent = 'Шаг 1. Нажмите «Использовать этого героя», чтобы добавить референс в процесс.';

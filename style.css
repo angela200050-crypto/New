@@ -605,3 +605,34 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--accen
 @media(min-width:1051px){.chain-stage{gap:40px}.chain-inputs{grid-template-columns:1fr}.chain-preview{min-height:300px}.chain-ref img{height:110px}}
 @media(max-width:1050px){.generation-node{width:100%}.generation-symbol{margin:8px 0}.generation-node .chain-port{display:none}}
 @media(max-width:650px){.template-panel{grid-template-columns:1fr;padding:20px;gap:16px}}
+
+/* Connection paths stay within their own diagram. */
+.demo-connections{overflow:hidden}
+
+/* Reuse is a key outcome of building a workflow. */
+.template-panel{padding:32px;border-color:var(--result-border);background:var(--green-surface);box-shadow:0 18px 40px #0004,inset 0 1px 0 #a0edbc20}
+.template-panel h3{background:none;border:0;padding:0}
+#template-status{color:#b0dcc1;font-weight:600}
+@media(max-width:650px){.template-panel{padding:24px}}
+
+/* Highlight the handoff from one node's output to the next node's input. */
+#chain-photo>p{margin-top:16px;margin-bottom:8px;padding:4px 0 4px 14px;border-left:3px solid var(--accent);color:#fff;font-size:17px;line-height:1.55;font-weight:600}
+@media(max-width:650px){#chain-photo>p{font-size:16px}}
+
+/* Readable input → processing → output inside the generation node. */
+.generation-node{align-self:center;justify-content:flex-start;padding:22px;min-height:0}
+.generation-heading{padding-bottom:20px;border-bottom:1px solid #344150;margin-bottom:22px}
+.generation-node .generation-heading h3{font-size:23px;line-height:1.2;margin:12px 0 0;color:#fff}
+.generation-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:24px}
+.generation-steps li{position:relative;display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px}
+.generation-steps li:not(:last-child):before{content:'';position:absolute;left:13px;top:36px;bottom:-16px;width:1px;background:#46685a}
+.generation-step-number{display:grid;place-items:center;width:28px;height:28px;border:1px solid #46685a;border-radius:50%;background:#14251e;color:#b0dcc1;font-size:10px;font-weight:750}
+.generation-step-label{display:block;color:#f4b46b;font-size:9px;letter-spacing:.12em;font-weight:800;margin:2px 0 9px}
+.generation-steps h4{font-size:16px;line-height:1.35;margin:0 0 8px;color:#fff}
+.generation-node .generation-steps p{color:#fff;font-size:13px;line-height:1.55;margin:0}
+.generation-data{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.generation-data span{padding:5px 7px;border:1px solid #46685a;border-radius:5px;background:#14251e;color:#b0dcc1;font-size:10px}
+.generation-output-label{display:inline-block;margin-top:12px;color:#ffd097;font-size:13px;font-weight:700}
+@media(min-width:1051px){.chain-stage{grid-template-columns:minmax(0,1fr) minmax(0,.8fr) minmax(0,1fr)}}
+@media(max-width:1050px){.generation-node{align-self:stretch}.generation-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}.generation-steps li:not(:last-child):before{display:none}}
+@media(max-width:650px){.generation-steps{display:flex}.generation-steps li:not(:last-child):before{display:block}}
