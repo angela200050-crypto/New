@@ -29,8 +29,6 @@ let changeTimer = 0;
 let edgeTimer = 0;
 const stage = $('#flow-stage');
 const packet = $('#flow-packet');
-const compare = $('#compare');
-const slider = $('#compare-slider');
 
 function sameShot(a, b) {
   return a.place === b.place && a.light === b.light && a.camera === b.camera;
@@ -83,42 +81,10 @@ function renderResult() {
     : `Кадр ${String(selected + 1).padStart(2, '0')} обновлён. Герой и остальные кадры истории сохранились.`;
 }
 
-function setCompare(value) {
-  const before = $('#compare-before');
-  before.style.width = `${value}%`;
-  $('#compare-divider').style.left = `${value}%`;
-  $('#compare-before-image').style.width = `${before.parentElement.clientWidth}px`;
-}
-
-function renderCompare() {
-  const shot = shots[selected];
-  const baseline = startingShots[selected];
-  compare.hidden = sameShot(shot, baseline);
-  $('#compare-button').hidden = compare.hidden;
-  if (compare.hidden) return;
-  const before = $('#compare-before-image');
-  const after = $('#compare-after-image');
-  before.src = imagePath(baseline.place, baseline.light);
-  before.alt = `Исходный кадр: ${shotAlt(baseline)}`;
-  before.classList.toggle('camera-push', baseline.camera === 'push');
-  before.classList.toggle('camera-track', baseline.camera === 'track');
-  after.src = imagePath(shot.place, shot.light);
-  after.alt = `Новый кадр: ${shotAlt(shot)}`;
-  after.classList.toggle('camera-push', shot.camera === 'push');
-  after.classList.toggle('camera-track', shot.camera === 'track');
-  const changed = ['place', 'light', 'camera'].filter(key => shot[key] !== baseline[key]);
-  const singleChange = changed.length === 1 ? changed[0] : null;
-  const title = singleChange === 'camera' ? 'Камера меняет <em>историю кадра.</em>' : singleChange === 'light' ? 'Другой свет — <em>другое настроение.</em>' : singleChange === 'place' ? 'Новый маршрут — <em>тот же герой.</em>' : 'Новые решения — <em>новый кадр.</em>';
-  $('#compare-title').innerHTML = title;
-  $('#compare-description').textContent = `Кадр ${String(selected + 1).padStart(2, '0')}: ${placeName(shot.place).toLowerCase()}, ${lightName(shot.light).toLowerCase()}, ${cameraName(shot.camera).toLowerCase()}. Изменился выбранный кадр; остальные остались на месте.`;
-  requestAnimationFrame(() => setCompare(Number(slider.value)));
-}
-
 function renderAll() {
   renderStoryboard();
   renderChoices();
   renderResult();
-  renderCompare();
   requestAnimationFrame(drawConnections);
 }
 
@@ -210,14 +176,11 @@ $$('[data-light]').forEach(button => button.addEventListener('click', () => chan
 $$('[data-camera]').forEach(button => button.addEventListener('click', () => changeSetting('camera', button.dataset.camera)));
 $('#reveal-button').addEventListener('click', () => selectShot(selected, true));
 $('#reset-button').addEventListener('click', () => { clearTimeout(changeTimer); shots[selected] = { ...startingShots[selected] }; $('#render-state').textContent = 'Готово'; renderAll(); });
-$('#compare-button').addEventListener('click', () => compare.scrollIntoView({ behavior: prefersReducedMotion() ? 'instant' : 'smooth', block: 'start' }));
-$('#replay-button').addEventListener('click', () => selectShot((selected + 1) % shots.length, true));
 const soundPlayer = $('.output-audio audio');
 const soundArt = $('.sound-art');
 soundPlayer.addEventListener('play', () => soundArt.classList.add('is-playing'));
 ['pause', 'ended'].forEach(event => soundPlayer.addEventListener(event, () => soundArt.classList.remove('is-playing')));
-slider.addEventListener('input', () => setCompare(Number(slider.value)));
-window.addEventListener('resize', () => { drawConnections(); drawMediaConnections(); setCompare(Number(slider.value)); });
+window.addEventListener('resize', () => { drawConnections(); drawMediaConnections(); });
 if ('ResizeObserver' in window) new ResizeObserver(drawConnections).observe(stage);
 if ('ResizeObserver' in window) new ResizeObserver(drawMediaConnections).observe($('#chain-stage'));
 renderAll();
