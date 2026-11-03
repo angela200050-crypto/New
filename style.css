@@ -566,3 +566,19 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--accen
 .demo-reference>div{width:100%}
 .demo-reference .connection-state{margin-top:0}
 @media(max-width:650px){.demo-reference{padding:20px}.demo-reference img{width:100%;height:auto;aspect-ratio:1.6}}
+
+/* Keep the connected result compact instead of stretching with the settings. */
+.flow-stage.is-connected .result-node{align-self:start;justify-content:flex-start;min-height:0;height:auto;padding:14px}
+.flow-stage.is-connected #demo-result-content{flex:none}
+
+/* Warm media surfaces contrast with the green title badges below. */
+.output-audio .sound-art{background:radial-gradient(ellipse at 25% 50%,#b9693245 0,transparent 68%),linear-gradient(135deg,#30231b,#181b20)}
+.output-audio .sound-art>span{color:#ffd097;border-color:#d49a65;box-shadow:0 0 36px #f4b46b30}
+.output-audio .sound-bars i{background:#f4b46b}
+.output-script .script-sheet{background:radial-gradient(ellipse at 15% 0,#81522c40,transparent 70%),linear-gradient(135deg,#2c231c,#1d1b19);border-bottom:1px solid #f4b46b55}
+.output-video video,.output-audio .sound-art{border-bottom:1px solid #f4b46b55}
+.output-script .script-sheet>span,.output-script .script-sheet>small{color:#ffd097}
+
+/* Match the lower input cards' alignment and avoid a loose two-line label. */
+.chain-input{justify-content:flex-start}
+#chain-style>strong{white-space:normal;width:fit-content}
