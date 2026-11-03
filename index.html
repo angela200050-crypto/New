@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#090b12">
   <title>NODI AI — от идеи до готового контента</title>
   <meta name="description" content="Создавайте изображения, видео и звук в едином процессе. Соединяйте промпты, референсы и инструменты генерации в NODI AI.">
-  <link rel="stylesheet" href="style.css?v=20261103-media-refinement">
+  <link rel="stylesheet" href="style.css?v=20261103-node-workflow">
 </head>
 <body>
   <header class="topbar">
@@ -33,15 +33,16 @@
     </section>
 
     <section id="example" class="media-chain wrap" aria-labelledby="chain-title">
-      <div class="chain-heading"><p class="eyebrow">01 / КАК ЭТО РАБОТАЕТ</p><h2 id="chain-title">Начните <em>с идеи.</em></h2><p>Каждая нода — отдельный шаг работы. На примере трамвая покажем, как описание задачи, референс и стиль соединяются в готовое изображение.</p></div>
+      <div class="chain-heading"><p class="eyebrow">01 / КАК ЭТО РАБОТАЕТ</p><h2 id="chain-title">Начните <em>с идеи.</em></h2><p>Каждая нода — отдельный шаг работы. На примере трамвая покажем, как описание задачи, референс и стиль поступают в генератор. Он обрабатывает входные данные и выдаёт изображение. Связи передают данные с выхода одного шага на вход следующего.</p></div>
       <div class="chain-stage" id="chain-stage" aria-label="Схема создания изображения из промпта, референса и стиля">
-        <svg class="chain-connections" id="chain-connections" aria-hidden="true"><path id="chain-prompt-edge" class="chain-edge"/><path id="chain-reference-edge" class="chain-edge"/><path id="chain-style-edge" class="chain-edge"/></svg>
+        <svg class="chain-connections" id="chain-connections" aria-hidden="true"><path id="chain-prompt-edge" class="chain-edge"/><path id="chain-reference-edge" class="chain-edge"/><path id="chain-style-edge" class="chain-edge"/><path id="chain-generation-edge" class="chain-edge"/></svg>
         <div class="chain-inputs">
           <div class="chain-node chain-input" id="chain-prompt"><span class="chain-kicker">01 / ПРОМПТ</span><strong>Что происходит?</strong><p>«Создай изображение трамвая с приложенного референса: сохрани бордовый цвет, форму вагона и характерные детали. Помести его на заснеженный горный виадук при дневном свете. Используй референс стиля: холодные оттенки снега, тёплый свет в окнах и кинематографичную атмосферу».</p><span class="chain-port out" aria-hidden="true"></span></div>
           <div class="chain-node chain-input" id="chain-reference"><span class="chain-kicker">02 / РЕФЕРЕНС</span><strong>Кто остаётся героем?</strong><div class="chain-ref"><img src="assets/paper-city/night.webp" alt="Референс бордового трамвая в ночном городе" loading="lazy"><span>Тот же трамвай</span></div><span class="chain-port out" aria-hidden="true"></span></div>
           <div class="chain-node chain-input" id="chain-style"><span class="chain-kicker">03 / СТИЛЬ</span><strong>Какой стиль?</strong><div class="chain-style-swatch" aria-hidden="true"><i></i><i></i><i></i></div><p>Холодный воздух, тёплый свет, кинематографичный кадр.</p><span class="chain-port out" aria-hidden="true"></span></div>
         </div>
-        <div class="chain-node chain-output" id="chain-photo"><span class="chain-kicker">04 / ИЗОБРАЖЕНИЕ</span><div class="chain-preview"><img src="assets/paper-city/mountain-day.webp" alt="Трамвай на заснеженном горном виадуке" loading="lazy"></div><strong>Кадр собран</strong><p>Промпт, герой и стиль сошлись в одном результате.</p><span class="chain-port in" aria-hidden="true"></span></div>
+        <div class="chain-node generation-node" id="chain-generator"><span class="chain-kicker">04 / ГЕНЕРАЦИЯ ИЗОБРАЖЕНИЯ</span><h3>Собираем кадр</h3><p class="generation-input">ВХОД<br><span>Промпт + референс + стиль</span></p><div class="generation-symbol" aria-hidden="true">✦</div><p>Модель создаёт изображение по описанию и визуальным ориентирам.</p><p class="generation-input">ВЫХОД<br><span>Готовое изображение</span></p><span class="chain-port in" aria-hidden="true"></span><span class="chain-port out" aria-hidden="true"></span></div>
+        <div class="chain-node chain-output" id="chain-photo"><span class="chain-kicker">05 / РЕЗУЛЬТАТ</span><div class="chain-preview"><img src="assets/paper-city/mountain-day.webp" alt="Трамвай на заснеженном горном виадуке" loading="lazy"></div><strong>Кадр собран</strong><p>Этот кадр можно передать следующей ноде: например, генератору видео.</p><span class="chain-port in" aria-hidden="true"></span></div>
 
       </div>
     </section>
@@ -86,8 +87,10 @@
         </div>
 
       </div>
-      <div class="demo-video-result" id="demo-video-result" hidden><div><p class="eyebrow">СЛЕДУЮЩАЯ НОДА / ВИДЕО</p><h3>Кадр продолжает историю</h3><p>Видео создано из дневного кадра в горах. Для примера мы вернули эти настройки — теперь можно проследить путь от изображения к движению.</p></div><video controls playsinline preload="metadata" poster="assets/paper-city/mountain-day.webp" aria-label="Видео из дневного кадра в горах"><source src="assets/paper-city/mountain-video.mp4" type="video/mp4"></video></div>
+      <div class="demo-video-result" id="demo-video-result" hidden><div class="video-process"><figure><img src="assets/paper-city/mountain-day.webp" alt="Исходный дневной кадр в горах"><figcaption>Вход: изображение</figcaption></figure><span class="process-arrow" aria-hidden="true">↓</span><div class="video-generation"><span class="chain-kicker">ГЕНЕРАЦИЯ ВИДЕО</span><strong>Добавляем движение</strong><p>Изображение + инструкция «Плавный наезд» → видеоролик</p></div><span class="process-arrow" aria-hidden="true">↓</span><span class="chain-kicker">ВЫХОД: ВИДЕО · 4 СЕКУНДЫ</span></div><div><p class="eyebrow">СЛЕДУЮЩАЯ НОДА / ВИДЕО</p><h3>Кадр продолжает историю</h3><p>Видео создано из дневного кадра в горах. Для примера мы вернули эти настройки — теперь можно проследить путь от изображения к движению.</p><video controls playsinline preload="metadata" poster="assets/paper-city/mountain-day.webp" aria-label="Видео из дневного кадра в горах"><source src="assets/paper-city/mountain-video.mp4" type="video/mp4"></video></div></div>
       <div class="stage-footer"><p id="change-caption" aria-live="polite">Измените место или свет — остальные настройки сохранятся.</p><div class="stage-actions"><button class="text-button" id="reset-button" type="button">Вернуть исходный кадр ↺</button></div></div>
+      <div class="template-panel"><div><h3>Сохраните процесс для следующей задачи</h3><p>Шаблон запомнит место и свет. Его можно применить снова — без повторной настройки. Сохранение работает только в этом браузере.</p><p id="template-status" role="status">Пока нет сохранённого шаблона.</p></div><div class="template-actions"><button class="secondary" id="save-template" type="button" disabled>Сохранить как шаблон</button><button class="secondary" id="apply-template" type="button" hidden>Применить шаблон</button></div></div>
+      <p class="prototype-note">Это интерактивная демонстрация: изображения и ролик подготовлены заранее, реальные AI-модели не запускаются. В рабочем сервисе ноды выполняли бы генерацию. Сохранение параметров помогает повторять процесс, но не гарантирует одинаковый результат модели.</p>
     </section>
 
     <section class="team wrap" id="team" aria-labelledby="team-title">
@@ -109,6 +112,6 @@
     </section>
   </main>
   <footer class="footer wrap"><span>NODI AI · Создавайте, соединяя идеи</span><span>Концепт интерактивной страницы · 2026</span></footer>
-  <script src="script.js?v=20261103-media-refinement"></script>
+  <script src="script.js?v=20261103-node-workflow"></script>
 </body>
 </html>

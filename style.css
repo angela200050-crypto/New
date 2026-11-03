@@ -582,3 +582,26 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--accen
 /* Match the lower input cards' alignment and avoid a loose two-line label. */
 .chain-input{justify-content:flex-start}
 #chain-style>strong{white-space:normal;width:fit-content}
+
+/* Warm letterbox background around the square video. */
+.output-video video{background:#30231b}
+
+/* Make inputs, processing and reusable outputs explicit. */
+.chain-stage{grid-template-columns:minmax(0,1.1fr) minmax(0,.65fr) minmax(0,1fr)}
+.generation-node{display:flex;flex-direction:column;justify-content:center;padding:22px;align-self:stretch}
+.generation-node h3{font-size:22px;line-height:1.25;margin:8px 0 20px}
+.generation-input{color:#90cfaa!important;font-size:10px!important;letter-spacing:.07em}
+.generation-input span{display:block;color:#fff;font-size:13px;letter-spacing:0;margin-top:8px}
+.generation-symbol{font-size:40px;color:#90cfaa;margin:20px 0;text-align:center}
+#chain-generation-edge{stroke:#90cfaa}
+.video-process{display:flex;flex-direction:column;align-items:center;gap:14px}
+.video-process figure{margin:0;max-width:300px}.video-process img{width:100%;border-radius:10px}.video-process figcaption{color:#fff;font-size:13px;margin-top:10px}
+.video-generation{border:1px solid #46685a;border-radius:12px;padding:20px;background:#121b23;width:100%}
+.video-generation strong{display:block;color:#fff;font-size:18px}.process-arrow{color:#90cfaa;font-size:24px}
+.template-panel{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;border:1px solid #46685a;padding:24px;border-radius:16px;margin-top:32px}
+.template-panel h3{font-size:22px;margin-bottom:12px}.template-panel p{color:#fff;font-size:15px;line-height:1.6;margin-bottom:8px}
+.template-actions{display:flex;flex-direction:column;gap:12px}.template-actions button{font-size:14px}.template-actions button:disabled{opacity:.4;cursor:default}.template-actions button[hidden]{display:none}
+.prototype-note{font-size:13px;color:#fff;line-height:1.6;margin-top:20px}
+@media(min-width:1051px){.chain-stage{gap:40px}.chain-inputs{grid-template-columns:1fr}.chain-preview{min-height:300px}.chain-ref img{height:110px}}
+@media(max-width:1050px){.generation-node{width:100%}.generation-symbol{margin:8px 0}.generation-node .chain-port{display:none}}
+@media(max-width:650px){.template-panel{grid-template-columns:1fr;padding:20px;gap:16px}}

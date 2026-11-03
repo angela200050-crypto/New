@@ -46,13 +46,16 @@ function drawMediaConnections() {
     return { x: port.left + port.width / 2 - rect.left, y: port.top + port.height / 2 - rect.top };
   };
   $('#chain-connections').setAttribute('viewBox', `0 0 ${stage.clientWidth} ${stage.clientHeight}`);
-  const to = point('#chain-photo .in');
+  const to = point('#chain-generator .in');
   ['prompt', 'reference', 'style'].forEach(name => {
     const from = point(`#chain-${name} .out`);
     const bend = Math.max(24, (to.x - from.x) * .45);
     const path = `M ${from.x} ${from.y} C ${from.x + bend} ${from.y} ${to.x - bend} ${to.y} ${to.x} ${to.y}`;
     $(`#chain-${name}-edge`).setAttribute('d', path);
   });
+  const from = point('#chain-generator .out');
+  const end = point('#chain-photo .in');
+  $('#chain-generation-edge').setAttribute('d', `M ${from.x} ${from.y} C ${from.x + 20} ${from.y} ${end.x - 20} ${end.y} ${end.x} ${end.y}`);
 }
 window.addEventListener('resize', drawMediaConnections);
 if ('ResizeObserver' in window) new ResizeObserver(drawMediaConnections).observe($('#chain-stage'));
@@ -109,6 +112,7 @@ function initializeDemo() {
   $('#flow-stage').classList.toggle('is-connected', connected);
   $('#connection-state').textContent = connected ? 'Подключено · герой сохраняется' : 'Этот трамвай станет основой вашего кадра';
   $('#reset-button').hidden = !connected;
+  $('#save-template').disabled = !connected;
   $('#add-video').hidden = true;
   $('#demo-next-hint').hidden = false;
   if (!connected) $('#change-caption').textContent = 'Первый шаг: подключите трамвай кнопкой справа.';
@@ -214,3 +218,35 @@ window.addEventListener('resize', drawDemo);
 if ('ResizeObserver' in window) new ResizeObserver(drawDemo).observe($('#flow-stage'));
 
 $('#connect-demo').addEventListener('click', () => { armed = true; connectDemo(); });
+
+const templateKey = 'nodi-demo-template-v1';
+function readTemplate() {
+  try {
+    const data = JSON.parse(localStorage.getItem(templateKey));
+    return data && ['city', 'coast', 'mountain'].includes(data.place) && ['night', 'dawn', 'day'].includes(data.light) ? data : null;
+  } catch { return null; }
+}
+function showTemplate() {
+  const data = readTemplate();
+  $('#apply-template').hidden = !data;
+  if (data) $('#template-status').textContent = `Сохранён шаблон: ${placeName(data.place)} · ${lightName(data.light)}.`;
+}
+$('#save-template').addEventListener('click', () => {
+  try { localStorage.setItem(templateKey, JSON.stringify(settings)); showTemplate(); }
+  catch { $('#template-status').textContent = 'Браузер не разрешает сохранение. Текущие настройки остаются доступны до перезагрузки страницы.'; }
+});
+$('#apply-template').addEventListener('click', () => {
+  const data = readTemplate();
+  if (!data) { $('#template-status').textContent = 'Шаблон недоступен. Сохраните его заново.'; return; }
+  clearTimeout(updateTimer);
+  if (!connected) { armed = true; connectDemo(); }
+  settings = { place: data.place, light: data.light };
+  $('#demo-video-result video').pause();
+  $('#demo-video-result').hidden = true;
+  renderResult();
+  $('#add-video').hidden = false;
+  $('#demo-next-hint').hidden = true;
+  setStep('video');
+  $('#demo-hint').textContent = 'Шаблон применён: место и свет восстановлены. Можно изменить один шаг или продолжить в видео.';
+});
+showTemplate();
