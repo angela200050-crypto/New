@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#090b12">
   <title>Один объект — несколько продолжений · интерактивная история</title>
   <meta name="description" content="Интерактивная история о нодовой системе: выберите кадр, измените место или свет и проследите путь решения до результата.">
-  <link rel="stylesheet" href="style.css?v=20261103-flow-align">
+  <link rel="stylesheet" href="style.css?v=20261103-closing-panel">
 </head>
 <body>
   <header class="topbar">
@@ -105,7 +105,16 @@
       <div class="compare-view"><div class="compare-frame"><img id="compare-after-image" src="assets/paper-city/coast.webp" alt="Новая версия кадра"><div class="compare-before" id="compare-before"><img id="compare-before-image" src="assets/paper-city/coast.webp" alt="Исходная версия кадра"></div><span class="compare-divider" id="compare-divider" aria-hidden="true"></span></div><label for="compare-slider">Проведите, чтобы сравнить кадры</label><input id="compare-slider" type="range" min="0" max="100" value="50" aria-label="Сравнить исходный и изменённый кадры"><div class="compare-ends"><span>ИСХОДНЫЙ</span><span>НОВЫЙ</span></div></div>
     </section>
 
-    <section class="closing wrap"><p class="eyebrow">ИДЕЯ НОДОВОЙ СИСТЕМЫ</p><h2>Меняйте часть.<br><em>Сохраняйте целое.</em></h2><p>Не нужно начинать историю заново. Выберите нужный кадр, измените одну ноду и проследите, как решение доходит до результата.</p><a class="secondary" href="#storyboard">Вернуться к истории <span aria-hidden="true">↑</span></a></section>
+    <section class="closing wrap" aria-labelledby="closing-title">
+      <p class="eyebrow">ВАШ ХОД</p>
+      <h2 id="closing-title">Меняйте часть. <em>Сохраняйте целое.</em></h2>
+      <p>Выберите кадр, измените одну ноду и посмотрите, как знакомый трамвай оказывается в новой истории.</p>
+      <div class="closing-actions">
+        <a class="primary" href="#lab">Собрать кадр <span class="arrow-icon" aria-hidden="true"></span></a>
+        <a class="secondary" href="#storyboard">Выбрать другой кадр <span aria-hidden="true">↑</span></a>
+      </div>
+      <ol class="closing-steps" aria-label="Три шага работы со схемой"><li><span>01</span> Выберите кадр</li><li><span>02</span> Измените ноду</li><li><span>03</span> Сравните версии</li></ol>
+    </section>
   </main>
   <footer class="footer wrap"><span>ГОРОД / В НОВОМ СВЕТЕ</span><span>Концепт интерактивной страницы · 2026</span></footer>
   <script src="script.js"></script>
