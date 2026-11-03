@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#090b12">
   <title>NODI AI — от идеи до готового контента</title>
   <meta name="description" content="Создавайте изображения, видео и звук в едином процессе. Соединяйте промпты, референсы и инструменты генерации в NODI AI.">
-  <link rel="stylesheet" href="style.css?v=20261103-story-logic">
+  <link rel="stylesheet" href="style.css?v=20261103-format-branch">
 </head>
 <body>
   <header class="topbar">
@@ -16,7 +16,7 @@
       <a href="#example">Как это работает</a>
       <a href="#formats">Возможности</a>
       <a href="#lab">Попробовать</a>
-      <a href="#team">Для команды</a><button class="header-cta" type="button">Начать создавать <span class="arrow-icon" aria-hidden="true"></span></button>
+      <a href="#team">Для команды</a><a class="header-cta" href="#lab">Попробовать схему <span class="arrow-icon" aria-hidden="true"></span></a>
     </nav>
   </header>
   <main id="top">
@@ -33,12 +33,12 @@
     </section>
 
     <section id="example" class="media-chain wrap" aria-labelledby="chain-title">
-      <div class="chain-heading"><p class="eyebrow">01 / НАЧНИТЕ С ИДЕИ</p><h2 id="chain-title">Один объект — <em>несколько продолжений.</em></h2><p>Возьмём один трамвай. Промпт задаёт маршрут, референс сохраняет героя, а стиль объединяет кадры. Ноды передают эти данные генератору: меняя место в промпте, можно отправить того же героя в город, горы или к морю.</p></div>
+      <div class="chain-heading"><p class="eyebrow">01 / НАЧНИТЕ С ИДЕИ</p><h2 id="chain-title">Один объект — <em>несколько продолжений.</em></h2><p>Возьмём один объект — трамвай. Промпт задаёт маршрут, референс сохраняет его внешний вид, а стиль объединяет кадры. Ноды передают эти данные генератору: меняя место в промпте, можно показать тот же объект в городе, горах или у моря.</p></div>
       <div class="chain-stage" id="chain-stage" aria-label="Схема создания изображения из промпта, референса и стиля">
         <svg class="chain-connections" id="chain-connections" aria-hidden="true"><path id="chain-prompt-edge" class="chain-edge"/><path id="chain-reference-edge" class="chain-edge"/><path id="chain-style-edge" class="chain-edge"/><path id="chain-generation-edge" class="chain-edge"/></svg>
         <div class="chain-inputs">
           <div class="chain-node chain-input" id="chain-prompt"><span class="chain-kicker">01 / ПРОМПТ</span><strong>Что происходит?</strong><p>«Возьми трамвай с референса. Сохрани его внешний вид и помести на снежный виадук в горах при дневном свете».</p><span class="chain-port out" aria-hidden="true"></span></div>
-          <div class="chain-node chain-input" id="chain-reference"><span class="chain-kicker">02 / РЕФЕРЕНС</span><strong>Кто остаётся героем?</strong><div class="chain-ref"><img src="assets/paper-city/night.webp" alt="Референс бордового трамвая в ночном городе" loading="lazy"><span>Тот же трамвай</span></div><span class="chain-port out" aria-hidden="true"></span></div>
+          <div class="chain-node chain-input" id="chain-reference"><span class="chain-kicker">02 / РЕФЕРЕНС</span><strong>Какой объект сохраняем?</strong><div class="chain-ref"><img src="assets/paper-city/night.webp" alt="Референс бордового трамвая в ночном городе" loading="lazy"><span>Тот же трамвай</span></div><span class="chain-port out" aria-hidden="true"></span></div>
 
         </div>
           <div class="chain-node chain-input" id="chain-style"><span class="chain-kicker">03 / СТИЛЬ</span><strong>Какой стиль?</strong><div class="chain-style-swatch" aria-hidden="true"><i></i><i></i><i></i></div><p>Холодные оттенки, тёплый свет, кинематографичный кадр.</p><span class="chain-port out" aria-hidden="true"></span></div>
@@ -57,7 +57,15 @@
           <figure class="route-card is-source"><img src="assets/paper-city/mountain-day.webp" alt="Тот же трамвай на горном виадуке днём" loading="lazy"><figcaption><span>02 / ГОРЫ · КАДР ИЗ СХЕМЫ</span><strong>Горный перевал</strong></figcaption></figure>
           <figure class="route-card"><img src="assets/paper-city/coast-day.webp" alt="Тот же трамвай на приморской набережной днём" loading="lazy"><figcaption><span>03 / МОРЕ</span><strong>Солнечная набережная</strong></figcaption></figure>
         </div>
-        <p class="route-next">Готовый кадр может стать входом следующих нод: <a href="#video-result">видео</a>, <a href="#audio-result">звук</a> или <a href="#script-result">сценарий</a> <span aria-hidden="true">↓</span></p>
+        <div class="format-branch" aria-label="Продолжение горного кадра в трёх форматах">
+          <div class="format-branch-source"><span>ВЫХОД ИЗ СХЕМЫ</span><strong>Горный кадр</strong><small>Изображение + настройки сцены</small></div>
+          <span class="format-branch-line" aria-hidden="true"></span>
+          <div class="format-branch-outputs">
+            <a href="#video-result"><span>01 / ВИДЕО</span><strong>Кадр движется</strong><small>Готовый ролик ↗</small></a>
+            <a href="#audio-result"><span>02 / ЗВУК</span><strong>Сцена звучит</strong><small>Атмосфера маршрута ↗</small></a>
+            <a href="#script-result"><span>03 / СЦЕНАРИЙ</span><strong>Сцена описана</strong><small>Текст для кадра ↗</small></a>
+          </div>
+        </div>
       </div>
       <details class="node-details"><summary>Как нода обрабатывает данные</summary><div class="node-details-content">          <ol class="generation-steps">
             <li><span class="generation-step-number">01</span><div><span class="generation-step-label">ВХОД</span><h4>Получаем данные</h4><p>Промпт, референс и стиль поступают в одну ноду.</p><div class="generation-data"><span>Текст</span><span>Изображение</span><span>Стиль</span></div></div></li>
@@ -81,11 +89,11 @@
         <p>Пройдите три шага: подключите референс трамвая, измените место или свет и посмотрите, как готовый кадр может стать основой для видео.</p>
       </div>
       <ol class="demo-steps" aria-label="Этапы знакомства"><li class="is-current" data-step="connect">01 / Подключите референс</li><li data-step="change">02 / Измените сцену</li><li data-step="video">03 / Посмотрите видео</li></ol>
-      <p class="demo-hint" id="demo-hint" role="status">Шаг 1. Нажмите «Использовать этого героя», чтобы добавить референс в процесс.</p>
+      <p class="demo-hint" id="demo-hint" role="status">Шаг 1. Нажмите «Использовать этот объект», чтобы добавить референс в процесс.</p>
       <div class="flow-stage" id="flow-stage" aria-label="Настройки и результат демонстрации">
         <svg class="demo-connections" aria-hidden="true"><path id="demo-reference-edge"/><path id="demo-place-edge"/><path id="demo-light-edge"/><path id="demo-draft-edge"/></svg>
         <div class="choice-stack">
-          <div class="flow-node demo-reference" id="demo-reference"><div><span class="node-kicker">ИСХОДНЫЙ ОБЪЕКТ</span><strong>Ваш исходный герой</strong><p>Его цвет и форма сохранятся при изменении сцены.</p></div><img src="assets/paper-city/night.webp" alt="Референс бордового трамвая"><button class="demo-port source-port" id="reference-port" type="button" aria-label="Начать связь от референса" aria-pressed="false"></button><span class="connection-state" id="connection-state">Ожидает подключения</span></div>
+          <div class="flow-node demo-reference" id="demo-reference"><div><span class="node-kicker">ИСХОДНЫЙ ОБЪЕКТ</span><strong>Трамвай из референса</strong><p>Его цвет и форма сохранятся при изменении сцены.</p></div><img src="assets/paper-city/night.webp" alt="Референс бордового трамвая"><button class="demo-port source-port" id="reference-port" type="button" aria-label="Начать связь от референса" aria-pressed="false"></button><span class="connection-state" id="connection-state">Ожидает подключения</span></div>
           <div class="flow-node choice-node" id="place-node"><span class="demo-auto-port" id="place-port" aria-hidden="true"></span>
             <div class="node-header"><span class="node-kicker">01 / МЕСТО</span><span class="node-type">СЦЕНА</span></div>
             <h3>Где происходит действие?</h3><p>Изменится окружение выбранного кадра.</p>
@@ -97,7 +105,7 @@
             <div class="choice-buttons" role="group" aria-label="Время суток"><button type="button" data-light="night" aria-pressed="false">Ночь</button><button type="button" data-light="dawn" aria-pressed="true">Рассвет</button><button type="button" data-light="day" aria-pressed="false">День</button></div>
           </div>
         </div>
-        <div class="flow-node result-node" id="result-node"><button class="demo-port target-port" id="result-port" type="button" aria-label="Подключить референс к результату" aria-disabled="true"></button><div class="demo-empty" id="demo-empty"><img class="demo-ghost" src="assets/paper-city/mountain-day.webp" alt="" aria-hidden="true"><span class="demo-preview-label">ПРИМЕР БУДУЩЕГО РЕЗУЛЬТАТА</span><h3>Создайте новую сцену с этим трамваем</h3><p>Начнём с готового референса. Затем вы сможете выбрать место и время суток.</p><button class="primary" id="connect-demo" type="button">Использовать этого героя <span class="arrow-icon" aria-hidden="true"></span></button><span class="demo-alternative">Или соедините зелёные кружки перетаскиванием.</span></div><div id="demo-result-content" hidden>
+        <div class="flow-node result-node" id="result-node"><button class="demo-port target-port" id="result-port" type="button" aria-label="Подключить референс к результату" aria-disabled="true"></button><div class="demo-empty" id="demo-empty"><img class="demo-ghost" src="assets/paper-city/mountain-day.webp" alt="" aria-hidden="true"><span class="demo-preview-label">ПРИМЕР БУДУЩЕГО РЕЗУЛЬТАТА</span><h3>Создайте новую сцену с этим трамваем</h3><p>Начнём с готового референса. Затем вы сможете выбрать место и время суток.</p><button class="primary" id="connect-demo" type="button">Использовать этот объект <span class="arrow-icon" aria-hidden="true"></span></button><span class="demo-alternative">Или соедините зелёные кружки перетаскиванием.</span></div><div id="demo-result-content" hidden>
           <div class="node-header"><span class="node-kicker" id="result-index">03 / ГОТОВЫЙ КАДР</span><span class="node-type">РЕЗУЛЬТАТ</span></div>
           <div class="result-image"><img id="result-image" src="assets/paper-city/coast.webp" alt="Трамвай у моря на рассвете"></div>
           <div class="result-caption"><strong id="result-title">Дорога к морю</strong><span id="result-settings">У моря · Рассвет</span></div>
@@ -125,8 +133,8 @@
       <div class="closing-body">
       <p>Объединяйте идеи и инструменты в понятную схему. Создавайте контент для своих задач или выстраивайте общий процесс для команды.</p>
       <div class="closing-actions">
-        <button class="primary" type="button">Начать создавать <span class="arrow-icon" aria-hidden="true"></span></button>
-        <button class="secondary" type="button">Для команды <span class="arrow-icon" aria-hidden="true"></span></button>
+        <a class="primary" href="#lab">Попробовать схему <span class="arrow-icon" aria-hidden="true"></span></a>
+        <a class="secondary" href="#team">Для команды <span class="arrow-icon" aria-hidden="true"></span></a>
       </div>
       </div>
       <div class="closing-visual" aria-hidden="true"><svg viewBox="0 0 300 260" fill="none"><circle cx="150" cy="130" r="108" stroke="currentColor" opacity=".12"/><circle cx="150" cy="130" r="78" stroke="currentColor" opacity=".18"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M66 64h34c28 0 18 66 48 66M60 130h88M66 196h34c28 0 18-66 48-66M198 130h38" opacity=".65"/><rect x="135" y="98" width="64" height="64" rx="18" fill="#183427"/><path d="m153 130 10 10 20-22" stroke-width="3"/><rect x="30" y="42" width="40" height="40" rx="12" fill="#14251e"/><path d="M43 56h14M43 63h10M43 70h7"/><rect x="24" y="110" width="40" height="40" rx="12" fill="#14251e"/><path d="m33 139 9-12 7 7 6-5M35 120h1"/><rect x="30" y="176" width="40" height="40" rx="12" fill="#14251e"/><path d="m43 203 7-15 7 15M46 198h8"/><circle cx="247" cy="130" r="12" fill="#244638"/><path d="m242 130 4 4 6-8"/></g></svg></div>

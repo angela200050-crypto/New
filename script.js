@@ -117,7 +117,7 @@ function initializeDemo() {
   $('#demo-empty').hidden = connected;
   $('#demo-result-content').hidden = !connected;
   $('#flow-stage').classList.toggle('is-connected', connected);
-  $('#connection-state').textContent = connected ? 'Подключено · герой сохраняется' : 'Этот трамвай станет основой вашего кадра';
+  $('#connection-state').textContent = connected ? 'Подключено · объект сохраняется' : 'Этот трамвай станет основой вашего кадра';
   $('#reset-button').hidden = !connected;
   $('#save-template').disabled = !connected;
   $('#add-video').hidden = true;
@@ -177,7 +177,7 @@ function resetDemo() {
   $$('.demo-connections path').forEach(path => path.classList.remove('is-flowing'));
   initializeDemo();
   setStep('connect');
-  $('#demo-hint').textContent = 'Шаг 1. Нажмите «Использовать этого героя», чтобы добавить референс в процесс.';
+  $('#demo-hint').textContent = 'Шаг 1. Нажмите «Использовать этот объект», чтобы добавить референс в процесс.';
 }
 $('#reference-port').addEventListener('click', () => {
   if (connected) return;
