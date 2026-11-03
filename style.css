@@ -636,3 +636,11 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--accen
 @media(min-width:1051px){.chain-stage{grid-template-columns:minmax(0,1fr) minmax(0,.8fr) minmax(0,1fr)}}
 @media(max-width:1050px){.generation-node{align-self:stretch}.generation-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}.generation-steps li:not(:last-child):before{display:none}}
 @media(max-width:650px){.generation-steps{display:flex}.generation-steps li:not(:last-child):before{display:block}}
+
+/* Align the generator with the input group and output card. */
+@media(min-width:1051px){
+  .chain-stage{align-items:stretch}
+  .generation-node{align-self:stretch}
+  .generation-steps{flex:1;justify-content:space-between;gap:24px}
+  .generation-steps li:not(:last-child):before{bottom:-24px}
+}
