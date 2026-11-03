@@ -10,6 +10,7 @@ const lightName = light => ({ night: 'Ночь', dawn: 'Рассвет', day: '�
 const titles = { 'city-night': 'Ночной город', 'city-dawn': 'Первый свет', 'city-day': 'Город при свете дня', 'coast-night': 'Огни набережной', 'coast-dawn': 'Дорога к морю', 'coast-day': 'Солнечная набережная', 'mountain-night': 'Ночной перевал', 'mountain-dawn': 'Первые лучи в горах', 'mountain-day': 'Горный перевал' };
 const initial = { place: 'mountain', light: 'day' };
 let settings = { ...initial };
+const hasMatchingVideo = () => settings.place === 'mountain' && settings.light === 'day';
 let connected = false;
 let armed = false;
 let updateTimer = 0;
@@ -27,6 +28,7 @@ function renderResult() {
   $('#change-caption').textContent = place === initial.place && light === initial.light
     ? 'Измените место или свет — остальные настройки сохранятся.'
     : `Новый вариант: ${placeName(place).toLowerCase()}, ${lightName(light).toLowerCase()}. Внешний вид трамвая сохранён.`;
+  $('#add-video-label').textContent = hasMatchingVideo() ? 'Посмотреть видео этого кадра' : 'Посмотреть пример видео';
 }
 $$('.choice-buttons button').forEach(button => button.addEventListener('click', () => {
   if (!connected) return;
@@ -155,7 +157,9 @@ function animateChange(key) {
     image.classList.remove('is-revealing');
     void image.offsetWidth;
     image.classList.add('is-revealing');
-    $('#demo-hint').textContent = 'Результат обновлён. Нажмите «Оживить кадр», чтобы добавить следующий шаг — видео.';
+    $('#demo-hint').textContent = hasMatchingVideo()
+      ? 'Результат обновлён. Теперь можно посмотреть видео этого кадра.'
+      : 'Результат обновлён. Готовое видео есть для горного кадра — его можно посмотреть как пример следующего шага.';
     setStep('video');
     $('#add-video').hidden = false;
     $('#demo-next-hint').hidden = true;
@@ -212,12 +216,15 @@ window.addEventListener('pointerup', event => {
 window.addEventListener('pointercancel', () => { dragOrigin = null; $('#demo-draft-edge').setAttribute('d', ''); });
 $('#add-video').addEventListener('click', () => {
   clearTimeout(updateTimer);
-  settings = { ...initial };
-  renderResult();
   $$('.choice-node').forEach(n => n.classList.remove('is-updating'));
+  $('#demo-video-copy').textContent = hasMatchingVideo()
+    ? 'Это видео создано из выбранного дневного кадра в горах. Изображение поступает в следующую ноду вместе с инструкцией для движения.'
+    : `Вы выбрали кадр «${titles[`${settings.place}-${settings.light}`]}» — он сохраняется в схеме выше. Для него видео пока не подготовлено; здесь показан пример следующей ноды на дневном горном кадре.`;
   $('#demo-video-result').hidden = false;
   setStep('video');
-  $('#demo-hint').textContent = 'Новая нода добавлена: дневной кадр в горах → видео. Нажмите воспроизведение, чтобы посмотреть результат.';
+  $('#demo-hint').textContent = hasMatchingVideo()
+    ? 'Дневной кадр в горах передан следующей ноде. Нажмите воспроизведение, чтобы посмотреть видео.'
+    : 'Ваши настройки сохранены. Ниже показан пример перехода от другого кадра к видео.';
   $('#demo-video-result').scrollIntoView({ behavior: prefersReducedMotion() ? 'instant' : 'smooth', block: 'center' });
 });
 window.addEventListener('resize', drawDemo);

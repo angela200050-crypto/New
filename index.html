@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#090b12">
   <title>NODI AI — от идеи до готового контента</title>
   <meta name="description" content="Создавайте изображения, видео и звук в едином процессе. Соединяйте промпты, референсы и инструменты генерации в NODI AI.">
-  <link rel="stylesheet" href="style.css?v=20261103-closing-copy-width">
+  <link rel="stylesheet" href="style.css?v=20261103-story-logic">
 </head>
 <body>
   <header class="topbar">
@@ -33,7 +33,7 @@
     </section>
 
     <section id="example" class="media-chain wrap" aria-labelledby="chain-title">
-      <div class="chain-heading"><p class="eyebrow">01 / КАК ЭТО РАБОТАЕТ</p><h2 id="chain-title">Начните <em>с идеи.</em></h2><p>Каждая нода — отдельный шаг работы. На примере трамвая покажем, как описание задачи, референс и стиль поступают в генератор. Он обрабатывает входные данные и выдаёт изображение. Связи передают данные с выхода одного шага на вход следующего.</p></div>
+      <div class="chain-heading"><p class="eyebrow">01 / НАЧНИТЕ С ИДЕИ</p><h2 id="chain-title">Один объект — <em>несколько продолжений.</em></h2><p>Возьмём один трамвай. Промпт задаёт маршрут, референс сохраняет героя, а стиль объединяет кадры. Ноды передают эти данные генератору: меняя место в промпте, можно отправить того же героя в город, горы или к морю.</p></div>
       <div class="chain-stage" id="chain-stage" aria-label="Схема создания изображения из промпта, референса и стиля">
         <svg class="chain-connections" id="chain-connections" aria-hidden="true"><path id="chain-prompt-edge" class="chain-edge"/><path id="chain-reference-edge" class="chain-edge"/><path id="chain-style-edge" class="chain-edge"/><path id="chain-generation-edge" class="chain-edge"/></svg>
         <div class="chain-inputs">
@@ -50,6 +50,15 @@
         <div class="chain-node chain-output" id="chain-photo"><span class="chain-kicker">05 / РЕЗУЛЬТАТ</span><div class="chain-preview"><img src="assets/paper-city/mountain-day.webp" alt="Трамвай на заснеженном горном виадуке" loading="lazy"></div><strong>Кадр собран</strong><p>Этот кадр можно передать следующей ноде: например, генератору видео.</p><span class="chain-port in" aria-hidden="true"></span></div>
 
       </div>
+      <div class="route-continuations" aria-labelledby="route-title">
+        <div class="route-intro"><div><span class="chain-kicker">ОДИН РЕФЕРЕНС · ОДИН СТИЛЬ</span><h3 id="route-title">Меняем место — получаем другой кадр</h3></div><p>В промпте меняется маршрут. Трамвай остаётся узнаваемым, а дневной свет и визуальный стиль сохраняются.</p></div>
+        <div class="route-gallery">
+          <figure class="route-card"><img src="assets/paper-city/city-day.webp" alt="Бордовый трамвай в старом городе днём" loading="lazy"><figcaption><span>01 / ГОРОД</span><strong>Город при свете дня</strong></figcaption></figure>
+          <figure class="route-card is-source"><img src="assets/paper-city/mountain-day.webp" alt="Тот же трамвай на горном виадуке днём" loading="lazy"><figcaption><span>02 / ГОРЫ · КАДР ИЗ СХЕМЫ</span><strong>Горный перевал</strong></figcaption></figure>
+          <figure class="route-card"><img src="assets/paper-city/coast-day.webp" alt="Тот же трамвай на приморской набережной днём" loading="lazy"><figcaption><span>03 / МОРЕ</span><strong>Солнечная набережная</strong></figcaption></figure>
+        </div>
+        <p class="route-next">Готовый кадр может стать входом следующих нод: <a href="#video-result">видео</a>, <a href="#audio-result">звук</a> или <a href="#script-result">сценарий</a> <span aria-hidden="true">↓</span></p>
+      </div>
       <details class="node-details"><summary>Как нода обрабатывает данные</summary><div class="node-details-content">          <ol class="generation-steps">
             <li><span class="generation-step-number">01</span><div><span class="generation-step-label">ВХОД</span><h4>Получаем данные</h4><p>Промпт, референс и стиль поступают в одну ноду.</p><div class="generation-data"><span>Текст</span><span>Изображение</span><span>Стиль</span></div></div></li>
             <li><span class="generation-step-number">02</span><div><span class="generation-step-label">ОБРАБОТКА</span><h4>Генерируем кадр</h4><p>AI-модель использует описание и визуальные ориентиры, чтобы создать изображение.</p></div></li>
@@ -61,17 +70,17 @@
       <div class="output-intro"><p class="eyebrow">02 / ВОЗМОЖНОСТИ</p><h2 id="formats-title">Один кадр — <em>новые возможности.</em></h2><p>Готовый кадр — основа для дальнейших генераций. Продолжите идею в видео, добавьте звуковую атмосферу или подготовьте сценарий — материалы останутся частью одной истории.</p></div>
       <div class="output-grid" aria-label="Форматы результата">
         <article class="output-card output-video" id="video-result"><div class="output-label">01 / ВИДЕО</div><video controls playsinline preload="none" poster="assets/paper-city/mountain-day.webp" aria-label="Видеосцена: трамвай на заснеженном горном виадуке"><source src="assets/paper-city/mountain-video.mp4" type="video/mp4"></video><div class="output-copy"><strong>Короткая видеосцена</strong><p>Готовый кадр становится видеосценой: трамвай продолжает путь по заснеженному виадуку.</p></div></article>
-        <article class="output-card output-audio"><div class="output-label">02 / ЗВУК</div><div class="sound-art" aria-hidden="true"><span>♪</span><div class="sound-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="output-copy"><strong>Звуковая атмосфера</strong><p>Звонок, ритм колёс и ветер задают настроение маршрута.</p><audio controls preload="none" aria-label="Прослушать звуковую атмосферу трамвая"><source src="assets/paper-city/tram-sound.mp3" type="audio/mpeg"></audio></div></article>
-        <article class="output-card output-script"><div class="output-label">03 / СЦЕНАРИЙ</div><div class="script-sheet"><span>СЦЕНА 02 · ГОРНЫЙ ПЕРЕВАЛ</span><p>Трамвай выходит из тени елей на открытый виадук. Камера плавно приближается к трамваю. Впереди — залитые солнцем снежные вершины.</p><small>Место: горы &nbsp;·&nbsp; Свет: день &nbsp;·&nbsp; Камера: плавный наезд</small></div><div class="output-copy"><strong>Сценарий сцены</strong><p>Те же решения превращаются в понятное описание кадра.</p></div></article>
+        <article class="output-card output-audio" id="audio-result"><div class="output-label">02 / ЗВУК</div><div class="sound-art" aria-hidden="true"><span>♪</span><div class="sound-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="output-copy"><strong>Звуковая атмосфера</strong><p>Звонок, ритм колёс и ветер задают настроение маршрута.</p><audio controls preload="none" aria-label="Прослушать звуковую атмосферу трамвая"><source src="assets/paper-city/tram-sound.mp3" type="audio/mpeg"></audio></div></article>
+        <article class="output-card output-script" id="script-result"><div class="output-label">03 / СЦЕНАРИЙ</div><div class="script-sheet"><span>СЦЕНА 02 · ГОРНЫЙ ПЕРЕВАЛ</span><p>Трамвай выходит из тени елей на открытый виадук. Камера плавно приближается к трамваю. Впереди — залитые солнцем снежные вершины.</p><small>Место: горы &nbsp;·&nbsp; Свет: день &nbsp;·&nbsp; Камера: плавный наезд</small></div><div class="output-copy"><strong>Сценарий сцены</strong><p>Те же решения превращаются в понятное описание кадра.</p></div></article>
       </div>
     </section>
 
     <section class="lab wrap" id="lab" aria-labelledby="lab-title">
       <div class="section-heading">
         <div><p class="eyebrow" id="lab-eyebrow">03 / ПОПРОБУЙТЕ САМИ</p><h2 id="lab-title">Один шаг — <em>новый результат.</em></h2></div>
-        <p>Пройдите три шага: возьмите героя за основу, выберите для него новую сцену и продолжите её в видео. Каждое действие добавляет или изменяет отдельный шаг процесса.</p>
+        <p>Пройдите три шага: подключите референс трамвая, измените место или свет и посмотрите, как готовый кадр может стать основой для видео.</p>
       </div>
-      <ol class="demo-steps" aria-label="Этапы знакомства"><li class="is-current" data-step="connect">01 / Выберите героя</li><li data-step="change">02 / Измените сцену</li><li data-step="video">03 / Оживите кадр</li></ol>
+      <ol class="demo-steps" aria-label="Этапы знакомства"><li class="is-current" data-step="connect">01 / Подключите референс</li><li data-step="change">02 / Измените сцену</li><li data-step="video">03 / Посмотрите видео</li></ol>
       <p class="demo-hint" id="demo-hint" role="status">Шаг 1. Нажмите «Использовать этого героя», чтобы добавить референс в процесс.</p>
       <div class="flow-stage" id="flow-stage" aria-label="Настройки и результат демонстрации">
         <svg class="demo-connections" aria-hidden="true"><path id="demo-reference-edge"/><path id="demo-place-edge"/><path id="demo-light-edge"/><path id="demo-draft-edge"/></svg>
@@ -92,12 +101,12 @@
           <div class="node-header"><span class="node-kicker" id="result-index">03 / ГОТОВЫЙ КАДР</span><span class="node-type">РЕЗУЛЬТАТ</span></div>
           <div class="result-image"><img id="result-image" src="assets/paper-city/coast.webp" alt="Трамвай у моря на рассвете"></div>
           <div class="result-caption"><strong id="result-title">Дорога к морю</strong><span id="result-settings">У моря · Рассвет</span></div>
-          <p class="demo-next-hint" id="demo-next-hint">Измените место или свет, чтобы перейти к следующему шагу.</p><button class="secondary demo-video-button" id="add-video" type="button">Оживить кадр <span class="arrow-icon" aria-hidden="true"></span></button>
+          <p class="demo-next-hint" id="demo-next-hint">Измените место или свет, чтобы перейти к следующему шагу.</p><button class="secondary demo-video-button" id="add-video" type="button"><span id="add-video-label">Посмотреть пример видео</span> <span class="arrow-icon" aria-hidden="true"></span></button>
           </div>
         </div>
 
       </div>
-      <div class="demo-video-result" id="demo-video-result" hidden><div class="video-process"><figure><img src="assets/paper-city/mountain-day.webp" alt="Исходный дневной кадр в горах"><figcaption>Вход: изображение</figcaption></figure><span class="process-arrow" aria-hidden="true">↓</span><div class="video-generation"><span class="chain-kicker">ГЕНЕРАЦИЯ ВИДЕО</span><strong>Добавляем движение</strong><p>Изображение + инструкция «Плавный наезд» → видеоролик</p></div><span class="process-arrow" aria-hidden="true">↓</span><span class="chain-kicker">ВЫХОД: ВИДЕО · 4 СЕКУНДЫ</span></div><div><p class="eyebrow">СЛЕДУЮЩАЯ НОДА / ВИДЕО</p><h3>Кадр продолжает историю</h3><p>Видео создано из дневного кадра в горах. Для примера мы вернули эти настройки — теперь можно проследить путь от изображения к движению.</p><video controls playsinline preload="metadata" poster="assets/paper-city/mountain-day.webp" aria-label="Видео из дневного кадра в горах"><source src="assets/paper-city/mountain-video.mp4" type="video/mp4"></video></div></div>
+      <div class="demo-video-result" id="demo-video-result" hidden><div class="video-process"><figure><img src="assets/paper-city/mountain-day.webp" alt="Исходный дневной кадр в горах"><figcaption>Вход примера: горный кадр</figcaption></figure><span class="process-arrow" aria-hidden="true">↓</span><div class="video-generation"><span class="chain-kicker">ГЕНЕРАЦИЯ ВИДЕО</span><strong>Добавляем движение</strong><p>Изображение + инструкция «Плавный наезд» → видеоролик</p></div><span class="process-arrow" aria-hidden="true">↓</span><span class="chain-kicker">ВЫХОД: ВИДЕО · 4 СЕКУНДЫ</span></div><div><p class="eyebrow">СЛЕДУЮЩАЯ НОДА / ВИДЕО</p><h3>Из кадра — в видеосцену</h3><p id="demo-video-copy">Видео создано из дневного горного кадра. Выбранные настройки остаются в схеме выше.</p><video controls playsinline preload="metadata" poster="assets/paper-city/mountain-day.webp" aria-label="Пример видео из дневного кадра в горах"><source src="assets/paper-city/mountain-video.mp4" type="video/mp4"></video></div></div>
       <div class="stage-footer"><p id="change-caption" aria-live="polite">Измените место или свет — остальные настройки сохранятся.</p><div class="stage-actions"><button class="text-button" id="reset-button" type="button">Вернуть исходный кадр ↺</button></div></div>
       <div class="template-panel"><div><h3>Сохраните процесс для следующей задачи</h3><p>Шаблон запомнит место и свет. Его можно применить снова — без повторной настройки. Сохранение работает только в этом браузере.</p><p id="template-status" role="status">Пока нет сохранённого шаблона.</p></div><div class="template-actions"><button class="primary" id="save-template" type="button" disabled>Сохранить как шаблон</button><button class="secondary" id="apply-template" type="button" hidden>Применить шаблон</button></div></div>
     </section>
@@ -124,6 +133,6 @@
     </section>
   </main>
   <footer class="footer wrap"><span>NODI AI · Создавайте, соединяя идеи</span><span>Концепт интерактивной страницы · 2026</span></footer>
-  <script src="script.js?v=20261103-closing-copy-width"></script>
+  <script src="script.js?v=20261103-story-logic"></script>
 </body>
 </html>

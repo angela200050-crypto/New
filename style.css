@@ -761,3 +761,24 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--accen
 
 /* Let the closing copy use the spare space before the illustration. */
 @media(min-width:1200px){.closing-body{width:calc(100% + 90px)}.closing-body>p{width:100%;max-width:none;text-wrap:normal}}
+
+/* The opening promise continues into one object with several routes. */
+.route-continuations{margin:28px 0 0;padding:28px;border:1px solid var(--result-border);border-radius:22px;background:linear-gradient(145deg,#101d18,#0d1615 70%)}
+.route-intro{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:end;gap:32px;margin-bottom:24px}
+.route-intro .chain-kicker{color:var(--result-highlight);margin-bottom:10px}
+.route-intro h3{font-size:clamp(25px,2.5vw,34px);font-weight:550;letter-spacing:-.04em;line-height:1.16;margin:0}
+.route-intro p{color:#fff;font-size:16px;line-height:1.55;margin:0}
+.route-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.route-card{min-width:0;margin:0;overflow:hidden;border:1px solid #395548;border-radius:14px;background:#15221d}
+.route-card.is-source{border-color:#90cfaa;box-shadow:0 0 0 1px #90cfaa25}
+.route-card img{width:100%;aspect-ratio:1.7;object-fit:cover;object-position:72% center}
+.route-card figcaption{display:flex;flex-direction:column;gap:7px;padding:15px 17px 17px}
+.route-card figcaption span{color:#b0dcc1;font-size:10px;font-weight:800;letter-spacing:.1em}
+.route-card figcaption strong{color:#fff;font-size:18px;line-height:1.25}
+.route-next{display:flex;align-items:center;flex-wrap:wrap;gap:5px;margin:24px 0 0;color:#fff;font-size:16px;line-height:1.5}
+.route-next a{color:#b0dcc1;text-underline-offset:4px}
+.route-next a:hover{color:#fff}
+.route-next>span{color:#90cfaa;font-size:22px;line-height:1;margin-left:4px}
+#video-result,#audio-result,#script-result{scroll-margin-top:24px}
+@media(max-width:900px){.route-intro{grid-template-columns:1fr;gap:12px}.route-continuations{padding:24px}}
+@media(max-width:650px){.route-continuations{padding:18px;margin-top:22px}.route-intro{margin-bottom:18px}.route-intro h3{font-size:25px}.route-intro p,.route-next{font-size:15px}.route-gallery{grid-template-columns:1fr;gap:12px}.route-card{display:grid;grid-template-columns:42% 1fr;min-height:122px}.route-card img{height:100%;aspect-ratio:auto}.route-card figcaption{justify-content:center;padding:12px}.route-card figcaption strong{font-size:15px}}
