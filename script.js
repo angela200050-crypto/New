@@ -31,7 +31,7 @@ $$('.choice-buttons button').forEach(button => button.addEventListener('click', 
   renderResult();
 }));
 $('#reset-button').addEventListener('click', () => { settings = { ...initial }; renderResult(); });
-$('#reveal-button').addEventListener('click', () => $('#example').scrollIntoView({ behavior: prefersReducedMotion() ? 'instant' : 'smooth', block: 'start' }));
+$('#reveal-button').addEventListener('click', () => $('#lab').scrollIntoView({ behavior: prefersReducedMotion() ? 'instant' : 'smooth', block: 'start' }));
 function drawMediaConnections() {
   if (matchMedia('(max-width: 1050px)').matches) return;
   const stage = $('#chain-stage');
