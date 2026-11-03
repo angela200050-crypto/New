@@ -526,3 +526,43 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--accen
 .intro-aside p{font-size:22px;line-height:1.6;margin-bottom:32px;text-wrap:pretty}
 @media(max-width:900px){.intro{margin-top:28px;margin-bottom:56px;padding:64px 32px}.intro h1{font-size:clamp(44px,6.4vw,60px)}}
 @media(max-width:650px){.intro{margin-top:20px;margin-bottom:48px;padding:48px 22px;border-radius:20px}.intro h1{font-size:clamp(36px,9.3vw,50px)}.intro-aside{margin-top:24px}.intro-aside p{font-size:19px;margin-bottom:28px}}
+
+/* Benefit titles sit directly on their green cards. */
+.benefit-card h3{display:block;padding:0;border:0;border-radius:0;background:none;margin-bottom:16px}
+
+/* Green surfaces need no nested title badges. */
+.chain-output>strong,.result-caption>strong,.demo-video-result h3,
+.script-sheet h3,.closing h2,.intro h1{
+  display:block;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:none;
+}
+
+/* Title badges fit their labels rather than stretching in flex layouts. */
+.output-copy>strong,.chain-input>strong,.choice-node h3,.demo-reference>div>strong{
+  display:table;
+  width:fit-content;
+  max-width:100%;
+  align-self:flex-start;
+  padding:8px 12px;
+  line-height:1.35;
+  margin-left:0;
+  margin-right:0;
+}
+.chain-output>strong,.result-caption>strong,.benefit-card h3{
+  width:auto;
+  max-width:100%;
+  align-self:auto;
+  padding:0;
+  border:0;
+  background:none;
+}
+
+/* Show the reference as a readable image, not a thumbnail. */
+.demo-reference{display:flex;flex-direction:column;align-items:stretch;justify-content:center;gap:16px}
+.demo-reference img{order:-1;width:100%;height:auto;aspect-ratio:1.85;object-fit:cover;object-position:78% center;border-radius:10px}
+.demo-reference>div{width:100%}
+.demo-reference .connection-state{margin-top:0}
+@media(max-width:650px){.demo-reference{padding:20px}.demo-reference img{width:100%;height:auto;aspect-ratio:1.6}}
