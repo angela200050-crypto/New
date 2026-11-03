@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#090b12">
   <title>NODI AI — от идеи до готового контента</title>
   <meta name="description" content="Создавайте изображения, видео и звук в едином процессе. Соединяйте промпты, референсы и инструменты генерации в NODI AI.">
-  <link rel="stylesheet" href="style.css?v=20261103-hero-results">
+  <link rel="stylesheet" href="style.css?v=20261103-guided-demo">
 </head>
 <body>
   <header class="topbar">
@@ -67,28 +67,35 @@
     <section class="lab wrap" id="lab" aria-labelledby="lab-title">
       <div class="section-heading">
         <div><p class="eyebrow" id="lab-eyebrow">03 / ПОПРОБУЙТЕ САМИ</p><h2 id="lab-title">Один шаг — <em>новый результат.</em></h2></div>
-        <p>Выберите место и время суток. Окружение и свет изменятся, а трамвай останется тем же. Это демонстрация на подготовленных кадрах: результат можно увидеть сразу.</p>
+        <p>Соедините референс с результатом, затем измените место или свет. Проследите, как отдельный шаг меняет кадр, и продолжите его в видео. Здесь используются подготовленные материалы — реальная генерация не запускается.</p>
       </div>
+      <ol class="demo-steps" aria-label="Этапы знакомства"><li class="is-current" data-step="connect">01 / Соедините</li><li data-step="change">02 / Измените</li><li data-step="video">03 / Продолжите</li></ol>
+      <p class="demo-hint" id="demo-hint" role="status">Нажмите на порт референса, затем на порт результата. Или перетащите связь между ними.</p>
       <div class="flow-stage" id="flow-stage" aria-label="Настройки и результат демонстрации">
+        <svg class="demo-connections" aria-hidden="true"><path id="demo-reference-edge"/><path id="demo-place-edge"/><path id="demo-light-edge"/><path id="demo-draft-edge"/></svg>
         <div class="choice-stack">
-          <div class="flow-node choice-node" id="place-node">
+          <div class="flow-node demo-reference" id="demo-reference"><div><span class="node-kicker">ИСХОДНЫЙ ОБЪЕКТ</span><strong>Сохраните этого героя</strong><p>Тот же трамвай в любой новой сцене.</p></div><img src="assets/paper-city/night.webp" alt="Референс бордового трамвая"><button class="demo-port source-port" id="reference-port" type="button" aria-label="Начать связь от референса" aria-pressed="false"></button><span class="connection-state" id="connection-state">Ожидает подключения</span></div>
+          <div class="flow-node choice-node" id="place-node"><span class="demo-auto-port" id="place-port" aria-hidden="true"></span>
             <div class="node-header"><span class="node-kicker">01 / МЕСТО</span><span class="node-type">СЦЕНА</span></div>
             <h3>Где происходит действие?</h3><p>Изменится окружение выбранного кадра.</p>
             <div class="choice-buttons" role="group" aria-label="Место действия"><button type="button" data-place="city" aria-pressed="false">Старый город</button><button type="button" data-place="coast" aria-pressed="true">У моря</button><button type="button" data-place="mountain" aria-pressed="false">Горы</button></div>
           </div>
-          <div class="flow-node choice-node" id="light-node">
+          <div class="flow-node choice-node" id="light-node"><span class="demo-auto-port" id="light-port" aria-hidden="true"></span>
             <div class="node-header"><span class="node-kicker">02 / СВЕТ</span><span class="node-type">АТМОСФЕРА</span></div>
             <h3>Когда происходит действие?</h3><p>Изменится освещение, место сохранится.</p>
             <div class="choice-buttons" role="group" aria-label="Время суток"><button type="button" data-light="night" aria-pressed="false">Ночь</button><button type="button" data-light="dawn" aria-pressed="true">Рассвет</button><button type="button" data-light="day" aria-pressed="false">День</button></div>
           </div>
         </div>
-        <div class="flow-node result-node" id="result-node">
+        <div class="flow-node result-node" id="result-node"><button class="demo-port target-port" id="result-port" type="button" aria-label="Подключить референс к результату" aria-disabled="true"></button><div class="demo-empty" id="demo-empty"><span aria-hidden="true">＋</span><h3>Начните со связи</h3><p>Подключите референс, чтобы собрать первый кадр.</p></div><div id="demo-result-content" hidden>
           <div class="node-header"><span class="node-kicker" id="result-index">03 / ГОТОВЫЙ КАДР</span><span class="node-type">РЕЗУЛЬТАТ</span></div>
           <div class="result-image"><img id="result-image" src="assets/paper-city/coast.webp" alt="Трамвай у моря на рассвете"></div>
           <div class="result-caption"><strong id="result-title">Дорога к морю</strong><span id="result-settings">У моря · Рассвет</span></div>
+          <button class="secondary demo-video-button" id="add-video" type="button">Добавить видео <span class="arrow-icon" aria-hidden="true"></span></button>
+          </div>
         </div>
 
       </div>
+      <div class="demo-video-result" id="demo-video-result" hidden><div><p class="eyebrow">СЛЕДУЮЩАЯ НОДА / ВИДЕО</p><h3>Кадр продолжает историю</h3><p>Видео создано из дневного кадра в горах. Для примера мы вернули эти настройки — теперь можно проследить путь от изображения к движению.</p></div><video controls playsinline preload="metadata" poster="assets/paper-city/mountain-day.webp" aria-label="Видео из дневного кадра в горах"><source src="assets/paper-city/mountain-video.mp4" type="video/mp4"></video></div>
       <div class="stage-footer"><p id="change-caption" aria-live="polite">Измените место или свет — остальные настройки сохранятся.</p><div class="stage-actions"><button class="text-button" id="reset-button" type="button">Вернуть исходный кадр ↺</button></div></div>
     </section>
 
@@ -111,6 +118,6 @@
     </section>
   </main>
   <footer class="footer wrap"><span>NODI AI · Создавайте, соединяя идеи</span><span>Концепт интерактивной страницы · 2026</span></footer>
-  <script src="script.js?v=20261103-hero-results"></script>
+  <script src="script.js?v=20261103-guided-demo"></script>
 </body>
 </html>
