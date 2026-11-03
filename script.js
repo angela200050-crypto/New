@@ -149,6 +149,23 @@ function drawConnections() {
   pairs.forEach(([name, a, b]) => $(`#edge-${name}`).setAttribute('d', edge(a, b)));
   stage._points = points;
 }
+function drawMediaConnections() {
+  if (matchMedia('(max-width: 1050px)').matches) return;
+  const chainStage = $('#chain-stage');
+  const rect = chainStage.getBoundingClientRect();
+  const point = selector => {
+    const port = $(selector).getBoundingClientRect();
+    return { x: port.left + port.width / 2 - rect.left, y: port.top + port.height / 2 - rect.top };
+  };
+  $('#chain-connections').setAttribute('viewBox', `0 0 ${chainStage.clientWidth} ${chainStage.clientHeight}`);
+  const photoIn = point('#chain-photo .in');
+  [
+    ['#chain-prompt-edge', point('#chain-prompt .out'), photoIn],
+    ['#chain-reference-edge', point('#chain-reference .out'), photoIn],
+    ['#chain-style-edge', point('#chain-style .out'), photoIn],
+    ['#chain-video-edge', point('#chain-photo .out'), point('#chain-video .in')]
+  ].forEach(([selector, from, to]) => $(selector).setAttribute('d', edge(from, to)));
+}
 function animatePath(kind) {
   if (prefersReducedMotion() || matchMedia('(max-width: 900px)').matches) return;
   drawConnections();
@@ -195,7 +212,13 @@ $('#reveal-button').addEventListener('click', () => selectShot(selected, true));
 $('#reset-button').addEventListener('click', () => { clearTimeout(changeTimer); shots[selected] = { ...startingShots[selected] }; $('#render-state').textContent = 'Готово'; renderAll(); });
 $('#compare-button').addEventListener('click', () => compare.scrollIntoView({ behavior: prefersReducedMotion() ? 'instant' : 'smooth', block: 'start' }));
 $('#replay-button').addEventListener('click', () => selectShot((selected + 1) % shots.length, true));
+const soundPlayer = $('.output-audio audio');
+const soundArt = $('.sound-art');
+soundPlayer.addEventListener('play', () => soundArt.classList.add('is-playing'));
+['pause', 'ended'].forEach(event => soundPlayer.addEventListener(event, () => soundArt.classList.remove('is-playing')));
 slider.addEventListener('input', () => setCompare(Number(slider.value)));
-window.addEventListener('resize', () => { drawConnections(); setCompare(Number(slider.value)); });
+window.addEventListener('resize', () => { drawConnections(); drawMediaConnections(); setCompare(Number(slider.value)); });
 if ('ResizeObserver' in window) new ResizeObserver(drawConnections).observe(stage);
+if ('ResizeObserver' in window) new ResizeObserver(drawMediaConnections).observe($('#chain-stage'));
 renderAll();
+requestAnimationFrame(drawMediaConnections);
