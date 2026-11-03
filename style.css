@@ -63,3 +63,19 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--accen
 }
 .primary:active{transform:translateY(0);box-shadow:0 5px 15px #0007,0 4px 18px #ee8b4a40}
 .primary .arrow-icon{display:block;flex:none;align-self:center;vertical-align:initial;margin:0;transform:translateY(-1px)}
+
+@media(min-width:901px){
+  .flow-stage{min-height:0;grid-template-columns:minmax(0,1.15fr) minmax(0,1.36fr) minmax(0,1fr) minmax(0,1.43fr);align-items:stretch;gap:28px;padding:42px 36px}
+  .flow-stage>.flow-node{align-self:stretch}
+  .choice-stack{min-height:510px;gap:14px}
+  .choice-node{flex:1;display:flex;flex-direction:column}
+  .choice-buttons{margin-top:auto}
+  .hero-node,.result-node{display:flex;flex-direction:column}
+  .hero-reference,.result-image{flex:1;min-height:0;aspect-ratio:auto}
+  .hero-reference img{transform:none;object-position:68% center}
+  .render-node{display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .render-node .node-header{align-self:stretch;margin-bottom:auto}
+  .render-symbol{flex:none;margin:0 auto 23px}
+  .render-state{align-self:center;margin-bottom:auto}
+}
+@media(min-width:901px) and (max-width:1180px){.flow-stage{gap:19px;padding:30px 22px}.choice-stack{min-height:500px}.choice-node{padding:13px}.choice-buttons button{min-height:40px}}
