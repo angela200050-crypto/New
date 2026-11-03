@@ -773,7 +773,8 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--accen
 .route-card figcaption span{color:#b0dcc1;font-size:10px;font-weight:800;letter-spacing:.1em}
 .route-card figcaption strong{color:#fff;font-size:18px;line-height:1.25}
 .route-join{display:grid;place-items:center;height:72px}
-.route-join span{display:grid;place-items:center;width:34px;height:34px;border:1px solid #6da88a;border-radius:50%;background:#183027;color:#b8efd0;font-size:22px;line-height:1}
+.route-join span{display:grid;place-items:center;width:34px;height:34px;border:1px solid #6da88a;border-radius:50%;background:#183027;color:#b8efd0}
+.route-join svg{display:block;width:18px;height:18px}
 .format-branch{margin-top:0;padding:24px;border:1px solid #46685a;border-radius:14px;background:#102019}
 .format-branch-heading{margin-bottom:24px;text-align:center}
 .format-branch-heading span,.format-branch-outputs span{color:#b0dcc1;font-size:10px;font-weight:800;letter-spacing:.1em}
