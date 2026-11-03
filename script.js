@@ -213,7 +213,7 @@ window.addEventListener('pointercancel', () => { dragOrigin = null; $('#demo-dra
 $('#add-video').addEventListener('click', () => {
   clearTimeout(updateTimer);
   $$('.choice-node').forEach(n => n.classList.remove('is-updating'));
-  $('#demo-video-copy').textContent = `Ваш кадр «${titles[`${settings.place}-${settings.light}`]}» сохранён в схеме выше. Здесь показан пример видеорезультата для горного маршрута: кадр и инструкция для движения поступают в следующую ноду.`;
+  $('#demo-video-copy').textContent = `Ваш кадр «${titles[`${settings.place}-${settings.light}`]}» сохранён в схеме выше. Посмотрите пример видеорезультата для горного маршрута.`;
   $('#demo-video-result').hidden = false;
   setStep('video');
   $('#demo-hint').textContent = 'Ваши настройки сохранены. Ниже можно посмотреть пример видеорезультата.';
