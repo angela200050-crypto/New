@@ -669,3 +669,13 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--accen
 }
 @media(max-width:1050px){.generation-simple{gap:12px}.generation-heading{margin-bottom:16px}}
 @media(max-width:650px){.node-details{padding:18px}.node-details .generation-steps{grid-template-columns:1fr;gap:24px}}
+
+/* The explanation follows the full width of the diagram below. */
+.chain-heading>p:last-child{max-width:none;width:100%}
+
+/* Left-aligned content with clear processing labels. */
+.generation-simple{align-items:flex-start;text-align:left;gap:18px}
+.generation-simple .generation-mini-title{display:table;width:fit-content;max-width:100%;padding:7px 11px;margin-bottom:10px;border:1px solid var(--result-border);border-radius:7px;background:var(--green-surface);color:#fff;font-size:15px;line-height:1.35}
+.generation-simple p{margin:0}
+.generation-simple-symbol{display:grid;place-items:center;width:52px;height:52px;border:1px solid #46685a;border-radius:14px;background:var(--green-surface);color:#a4dfba}
+.generation-simple-symbol svg{width:32px;height:32px}
