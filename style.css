@@ -723,3 +723,16 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--accen
   .closing-actions{grid-row:3}
   .closing-visual{grid-row:2/4;max-width:220px}
 }
+
+/* Restore the closing headline's prominence and enlarge the illustration. */
+@media(min-width:901px){
+  .closing h2{font-size:clamp(36px,3.35vw,48px);white-space:normal;text-wrap:balance;line-height:1.15}
+  .closing{grid-template-columns:minmax(0,1.5fr) minmax(280px,.8fr)}
+  .closing-visual{max-width:330px}
+}
+@media(max-width:900px) and (min-width:651px){.closing-visual{max-width:240px}.closing{grid-template-columns:minmax(0,1fr) 220px}}
+@media(max-width:650px){.closing-visual{max-width:240px}}
+
+/* Closing heading follows the same typography as section headings. */
+.closing h2{font-size:clamp(39px,4.4vw,62px);font-weight:500;letter-spacing:-.055em;line-height:1.1;white-space:normal;text-wrap:balance}
+@media(max-width:650px){.closing h2{font-size:clamp(38px,9vw,50px)}}
