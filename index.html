@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#090b12">
-  <title>Последний рейс — исследуйте историю кадра</title>
+  <title>Город в новом свете — исследуйте историю кадра</title>
   <meta name="description" content="Интерактивный прототип: исследуйте ноды, измените свет и увидьте, как решение проходит через граф к результату.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="topbar"><a class="brand" href="#top" aria-label="Последний рейс — наверх"><span class="brand-mark">◈</span> ПОСЛЕДНИЙ / РЕЙС</a><span class="top-note">Интерактивная история одного кадра <span class="top-index">№ 001</span></span></header>
+  <header class="topbar"><a class="brand" href="#top" aria-label="Город в новом свете — наверх"><span class="brand-mark">◈</span> ГОРОД / В НОВОМ СВЕТЕ</a><span class="top-note">Интерактивная история одного кадра <span class="top-index">№ 001</span></span></header>
   <main id="top">
     <section class="intro wrap" aria-labelledby="page-title">
-      <div class="intro-copy"><p class="eyebrow"><span class="eyebrow-dot"></span> ИССЛЕДУЙТЕ ПРОЦЕСС</p><h1 id="page-title">У каждого кадра есть <em>история создания.</em></h1><p class="lead">Последний трамвай едет по старому городу после дождя. Что создаёт настроение этой сцены? Раскройте её решения и измените одно из них.</p><button class="primary" id="reveal-button" type="button">Показать, как создан кадр <span aria-hidden="true">↗</span></button><p class="hint">Первое действие займёт меньше минуты</p></div>
+      <div class="intro-copy"><p class="eyebrow"><span class="eyebrow-dot"></span> ИССЛЕДУЙТЕ ПРОЦЕСС</p><h1 id="page-title">У каждого кадра есть <em>история создания.</em></h1><p class="lead">Трамвай проезжает по старому городу после дождя. Что создаёт настроение этой сцены? Раскройте её решения и измените одно из них.</p><button class="primary" id="reveal-button" type="button">Показать, как создан кадр <span aria-hidden="true">↗</span></button><p class="hint">Первое действие займёт меньше минуты</p></div>
       <div class="hero-art"><img src="assets/paper-city/night.png" alt="Старинный трамвай на ночной улице старого города" fetchpriority="high"><span class="hero-caption">01 / ГОТОВЫЙ КАДР</span><span class="hero-corner" aria-hidden="true">✳</span></div>
     </section>
     <section class="lab wrap" id="lab" aria-labelledby="lab-title">
@@ -23,7 +23,7 @@
         <svg class="connections" viewBox="0 0 1000 580" preserveAspectRatio="none" aria-hidden="true"><path class="route route-city" d="M315 125 C445 125 420 275 615 275"/><path class="route route-tram" d="M315 255 C465 255 455 285 615 285"/><path class="route route-light" d="M315 385 C440 385 435 295 615 295"/><path class="route route-motion" d="M315 505 C465 505 460 305 615 305"/><circle class="route-packet" id="route-packet" r="6" cx="315" cy="385"/></svg>
         <div class="node-stack" id="node-stack">
           <button class="node-card" data-node="city" type="button"><span class="node-icon">01</span><span><small>01 / МЕСТО</small><strong>Город после дождя</strong></span><span class="node-port" aria-hidden="true"></span></button>
-          <button class="node-card" data-node="tram" type="button"><span class="node-icon">02</span><span><small>02 / ГЕРОЙ</small><strong>Последний трамвай</strong></span><span class="node-port" aria-hidden="true"></span></button>
+          <button class="node-card" data-node="tram" type="button"><span class="node-icon">02</span><span><small>02 / ГЕРОЙ</small><strong>Городской трамвай</strong></span><span class="node-port" aria-hidden="true"></span></button>
           <button class="node-card" data-node="light" type="button"><span class="node-icon">03</span><span><small>03 / АТМОСФЕРА</small><strong>Ночной свет</strong></span><span class="node-port" aria-hidden="true"></span></button>
           <button class="node-card" data-node="motion" type="button"><span class="node-icon">04</span><span><small>04 / КАМЕРА</small><strong>Движение по улице</strong></span><span class="node-port" aria-hidden="true"></span></button>
         </div>
@@ -34,7 +34,7 @@
     </section>
     <section class="compare wrap" id="compare" aria-labelledby="compare-title" hidden><div class="compare-copy"><p class="eyebrow">ОДНО ИЗМЕНЕНИЕ / НОВЫЙ КАДР</p><h2 id="compare-title">Свет изменился.<br><em>История осталась.</em></h2><p>Город, трамвай и композиция сохранены. Вы изменили только атмосферу — и увидели путь этого решения до результата.</p><button class="secondary" id="replay-button" type="button">Повторить эксперимент <span aria-hidden="true">↗</span></button></div><div class="compare-view"><div class="compare-frame"><img src="assets/paper-city/dawn.png" alt="Тот же город на рассвете"><div class="compare-before" id="compare-before"><img src="assets/paper-city/night.png" alt="Ночная версия той же сцены"></div><span class="compare-divider" id="compare-divider" aria-hidden="true"></span></div><label for="compare-slider">Сравнить ночь и рассвет</label><input id="compare-slider" type="range" min="0" max="100" value="50" aria-label="Сравнить ночь и рассвет"><div class="compare-ends"><span>НОЧЬ</span><span>РАССВЕТ</span></div></div></section>
     <section class="closing wrap"><p class="eyebrow">ИДЕЯ НОДОВОЙ СИСТЕМЫ</p><h2>Меняйте часть.<br><em>Сохраняйте целое.</em></h2><p>Каждая нода отвечает за своё решение. Связи показывают, как решения складываются в результат.</p><a href="#lab" class="secondary">Исследовать сцену ещё раз <span aria-hidden="true">↑</span></a></section>
-  </main><footer class="footer wrap"><span>ПОСЛЕДНИЙ / РЕЙС</span><span>Концепт интерактивной страницы · 2026</span></footer>
+  </main><footer class="footer wrap"><span>ГОРОД / В НОВОМ СВЕТЕ</span><span>Концепт интерактивной страницы · 2026</span></footer>
   <script src="script.js"></script>
 </body>
 </html>
