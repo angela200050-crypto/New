@@ -174,7 +174,7 @@ $$('.story-card').forEach(card => card.addEventListener('click', () => selectSho
 $$('[data-place]').forEach(button => button.addEventListener('click', () => changeSetting('place', button.dataset.place)));
 $$('[data-light]').forEach(button => button.addEventListener('click', () => changeSetting('light', button.dataset.light)));
 $$('[data-camera]').forEach(button => button.addEventListener('click', () => changeSetting('camera', button.dataset.camera)));
-$('#reveal-button').addEventListener('click', () => selectShot(selected, true));
+$('#reveal-button').addEventListener('click', () => $('#example').scrollIntoView({ behavior: prefersReducedMotion() ? 'instant' : 'smooth', block: 'start' }));
 $('#reset-button').addEventListener('click', () => { clearTimeout(changeTimer); shots[selected] = { ...startingShots[selected] }; $('#render-state').textContent = 'Готово'; renderAll(); });
 const soundPlayer = $('.output-audio audio');
 const soundArt = $('.sound-art');

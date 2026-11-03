@@ -229,3 +229,27 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--accen
 .chain-ref{flex-direction:column;align-items:stretch;gap:12px;font-size:14px}
 .chain-ref img{width:100%;height:auto;aspect-ratio:1.5;object-fit:cover;object-position:78% center;border-radius:8px}
 @media(min-width:651px) and (max-width:1050px){.chain-ref img{aspect-ratio:1.25}}
+
+/* Keep media cards compact; spacing must not enlarge their images. */
+.chain-inputs{grid-template-rows:auto auto auto;gap:20px}
+.chain-ref img{height:120px;aspect-ratio:auto;object-position:78% center}
+@media(min-width:1051px){
+  .chain-stage{align-items:stretch}
+  .chain-output{min-height:0}
+  .chain-preview{flex:1;min-height:240px}
+  .chain-preview img{position:absolute;inset:0;object-position:65% center}
+}
+@media(max-width:1050px){
+  .chain-preview{flex:none;aspect-ratio:1.9}
+  .chain-preview img{position:absolute;inset:0}
+}
+@media(max-width:650px){.chain-preview{aspect-ratio:1.6}.chain-ref img{height:140px}}
+
+/* Explain the process first; place scene selection next to the experiment. */
+.intro{padding-bottom:48px}
+.intro-heading{margin-bottom:0}
+.formats{padding-bottom:100px}
+.formats .output-intro{margin-top:0}
+.lab .story-footnote{margin-bottom:40px}
+#example{scroll-margin-top:28px}
+@media(max-width:650px){.intro{padding-bottom:40px}.formats{padding-bottom:75px}.lab .story-footnote{margin-bottom:32px}}

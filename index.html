@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#090b12">
   <title>Один объект — несколько продолжений · интерактивная история</title>
   <meta name="description" content="Интерактивная история о нодовой системе: выберите кадр, измените место или свет и проследите путь решения до результата.">
-  <link rel="stylesheet" href="style.css?v=20261103-green-spacing">
+  <link rel="stylesheet" href="style.css?v=20261103-process-first">
 </head>
 <body>
   <header class="topbar">
@@ -21,8 +21,38 @@
         </div>
         <div class="intro-aside">
           <p>Удобный способ создавать AI-контент для вашей команды и бизнеса. Объединяйте идеи, изображения, видео и звук в едином процессе: меняйте отдельные шаги, сохраняйте общий стиль и используйте удачные решения в новых проектах.</p>
-          <button class="primary" id="reveal-button" type="button">Разобрать кадр <span class="arrow-icon" aria-hidden="true"></span></button>
+          <button class="primary" id="reveal-button" type="button">С чего начать <span class="arrow-icon" aria-hidden="true"></span></button>
         </div>
+      </div>
+    </section>
+
+    <section id="example" class="media-chain wrap" aria-labelledby="chain-title">
+      <div class="chain-heading"><p class="eyebrow">ПУТЬ МАТЕРИАЛОВ</p><h2 id="chain-title">От идеи — <em>к движению.</em></h2><p>Промпт, референс героя и стиль соединяются в изображение. Готовый кадр становится основой видео.</p></div>
+      <div class="chain-stage" id="chain-stage" aria-label="Схема от промпта и референса до изображения и видео">
+        <svg class="chain-connections" id="chain-connections" aria-hidden="true"><path id="chain-prompt-edge" class="chain-edge"/><path id="chain-reference-edge" class="chain-edge"/><path id="chain-style-edge" class="chain-edge"/><path id="chain-video-edge" class="chain-edge"/></svg>
+        <div class="chain-inputs">
+          <div class="chain-node chain-input" id="chain-prompt"><span class="chain-kicker">01 / ПРОМПТ</span><strong>Что происходит?</strong><p>«Трамвай выходит на снежный виадук. Впереди — горы и дневной свет».</p><span class="chain-port out" aria-hidden="true"></span></div>
+          <div class="chain-node chain-input" id="chain-reference"><span class="chain-kicker">02 / РЕФЕРЕНС</span><strong>Кто остаётся героем?</strong><div class="chain-ref"><img src="assets/paper-city/night.webp" alt="Референс бордового трамвая в ночном городе" loading="lazy"><span>Тот же трамвай</span></div><span class="chain-port out" aria-hidden="true"></span></div>
+          <div class="chain-node chain-input" id="chain-style"><span class="chain-kicker">03 / СТИЛЬ</span><strong>Как выглядит история?</strong><div class="chain-style-swatch" aria-hidden="true"><i></i><i></i><i></i></div><p>Холодный воздух, тёплый свет, кинематографичный кадр.</p><span class="chain-port out" aria-hidden="true"></span></div>
+        </div>
+        <div class="chain-node chain-output" id="chain-photo"><span class="chain-kicker">04 / ИЗОБРАЖЕНИЕ</span><div class="chain-preview"><img src="assets/paper-city/mountain-day.webp" alt="Трамвай на заснеженном горном виадуке" loading="lazy"></div><strong>Кадр собран</strong><p>Промпт, герой и стиль сошлись в одном результате.</p><span class="chain-port in" aria-hidden="true"></span><span class="chain-port out" aria-hidden="true"></span></div>
+        <a class="chain-node chain-output chain-video" id="chain-video" href="#video-result"><span class="chain-kicker">05 / ВИДЕО</span><div class="chain-preview"><img src="assets/paper-city/mountain-day.webp" alt="Превью короткой видеосцены с трамваем в горах" loading="lazy"><span class="chain-play" aria-hidden="true"></span></div><strong>Кадр оживает</strong><p>Открыть видеопревью <span aria-hidden="true">→</span></p><span class="chain-port in" aria-hidden="true"></span></a>
+      </div>
+    </section>
+
+    <section class="formats wrap" aria-labelledby="formats-title">
+      <div class="output-intro"><h2 id="formats-title">Одна история — <em>разные форматы.</em></h2><p>Нода — это отдельный шаг: промпт, референс, стиль или генерация. Связав шаги, можно создать для одной истории изображение, видео, звук и сценарий.</p></div>
+      <div class="output-grid" aria-label="Форматы результата">
+        <article class="output-card output-video" id="video-result"><div class="output-label">01 / ВИДЕО · ПРЕВЬЮ</div><video controls playsinline preload="none" poster="assets/paper-city/mountain-day.webp" aria-label="Черновое превью видеосцены: камера приближается к трамваю в горах"><source src="assets/paper-city/mountain-motion.mp4" type="video/mp4"></video><div class="output-copy"><strong>Короткая видеосцена</strong><p>Сейчас показано превью движения камеры; готовый ролик появится здесь.</p></div></article>
+        <article class="output-card output-audio"><div class="output-label">02 / ЗВУК</div><div class="sound-art" aria-hidden="true"><span>♪</span><div class="sound-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="output-copy"><strong>Звуковая атмосфера</strong><p>Звонок, ритм колёс и ветер задают настроение маршрута.</p><audio controls preload="none" aria-label="Прослушать звуковую атмосферу трамвая"><source src="assets/paper-city/tram-sound.mp3" type="audio/mpeg"></audio></div></article>
+        <article class="output-card output-script"><div class="output-label">03 / СЦЕНАРИЙ</div><div class="script-sheet"><span>СЦЕНА 02 · ГОРНЫЙ ПЕРЕВАЛ</span><p>Трамвай выходит из тени елей на открытый виадук. Камера движется рядом с вагоном. Впереди — залитые солнцем снежные вершины.</p><small>Место: горы &nbsp;·&nbsp; Свет: день &nbsp;·&nbsp; Камера: проводка</small></div><div class="output-copy"><strong>Сценарий сцены</strong><p>Те же решения превращаются в понятное описание кадра.</p></div></article>
+      </div>
+    </section>
+
+    <section class="lab wrap" id="lab" aria-labelledby="lab-title">
+      <div class="section-heading">
+        <div><p class="eyebrow" id="lab-eyebrow">КАДР 03 / ИНТЕРАКТИВНАЯ СХЕМА</p><h2 id="lab-title">Попробуйте собрать <em>кадр сами.</em></h2></div>
+        <p>Каждая нода отвечает за одно решение. Связи показывают, как герой, место, свет и движение камеры складываются в выбранный кадр.</p>
       </div>
       <div class="storyboard" id="storyboard" role="group" aria-label="Три кадра истории">
         <button class="story-card" type="button" data-shot="0" aria-pressed="false">
@@ -38,34 +68,7 @@
           <span class="story-card-body"><span class="story-card-top"><strong>Дорога к морю</strong><span class="story-dot" aria-hidden="true"></span></span><span class="story-description">Новый маршрут и плавный наезд на героя.</span><span class="story-tags"><span>У моря</span><span>Рассвет</span><span>Наезд</span></span></span>
         </button>
       </div>
-      <p class="story-footnote">Нажмите на кадр, чтобы раскрыть его настройки <span aria-hidden="true">↓</span></p>
-      <div class="output-intro"><h2>Одна история — <em>разные форматы.</em></h2><p>Нода — это отдельный шаг: промпт, референс, стиль или генерация. Связав шаги, можно создать для одной истории изображение, видео, звук и сценарий.</p></div>
-      <div class="output-grid" aria-label="Форматы результата">
-        <article class="output-card output-video" id="video-result"><div class="output-label">01 / ВИДЕО · ПРЕВЬЮ</div><video controls playsinline preload="none" poster="assets/paper-city/mountain-day.webp" aria-label="Черновое превью видеосцены: камера приближается к трамваю в горах"><source src="assets/paper-city/mountain-motion.mp4" type="video/mp4"></video><div class="output-copy"><strong>Короткая видеосцена</strong><p>Сейчас показано превью движения камеры; готовый ролик появится здесь.</p></div></article>
-        <article class="output-card output-audio"><div class="output-label">02 / ЗВУК</div><div class="sound-art" aria-hidden="true"><span>♪</span><div class="sound-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="output-copy"><strong>Звуковая атмосфера</strong><p>Звонок, ритм колёс и ветер задают настроение маршрута.</p><audio controls preload="none" aria-label="Прослушать звуковую атмосферу трамвая"><source src="assets/paper-city/tram-sound.mp3" type="audio/mpeg"></audio></div></article>
-        <article class="output-card output-script"><div class="output-label">03 / СЦЕНАРИЙ</div><div class="script-sheet"><span>СЦЕНА 02 · ГОРНЫЙ ПЕРЕВАЛ</span><p>Трамвай выходит из тени елей на открытый виадук. Камера движется рядом с вагоном. Впереди — залитые солнцем снежные вершины.</p><small>Место: горы &nbsp;·&nbsp; Свет: день &nbsp;·&nbsp; Камера: проводка</small></div><div class="output-copy"><strong>Сценарий сцены</strong><p>Те же решения превращаются в понятное описание кадра.</p></div></article>
-      </div>
-    </section>
-
-    <section class="media-chain wrap" aria-labelledby="chain-title">
-      <div class="chain-heading"><p class="eyebrow">ПУТЬ МАТЕРИАЛОВ</p><h2 id="chain-title">От идеи — <em>к движению.</em></h2><p>Промпт, референс героя и стиль соединяются в изображение. Готовый кадр становится основой видео.</p></div>
-      <div class="chain-stage" id="chain-stage" aria-label="Схема от промпта и референса до изображения и видео">
-        <svg class="chain-connections" id="chain-connections" aria-hidden="true"><path id="chain-prompt-edge" class="chain-edge"/><path id="chain-reference-edge" class="chain-edge"/><path id="chain-style-edge" class="chain-edge"/><path id="chain-video-edge" class="chain-edge"/></svg>
-        <div class="chain-inputs">
-          <div class="chain-node chain-input" id="chain-prompt"><span class="chain-kicker">01 / ПРОМПТ</span><strong>Что происходит?</strong><p>«Трамвай выходит на снежный виадук. Впереди — горы и дневной свет».</p><span class="chain-port out" aria-hidden="true"></span></div>
-          <div class="chain-node chain-input" id="chain-reference"><span class="chain-kicker">02 / РЕФЕРЕНС</span><strong>Кто остаётся героем?</strong><div class="chain-ref"><img src="assets/paper-city/night.webp" alt="Референс бордового трамвая в ночном городе" loading="lazy"><span>Тот же трамвай</span></div><span class="chain-port out" aria-hidden="true"></span></div>
-          <div class="chain-node chain-input" id="chain-style"><span class="chain-kicker">03 / СТИЛЬ</span><strong>Как выглядит история?</strong><div class="chain-style-swatch" aria-hidden="true"><i></i><i></i><i></i></div><p>Холодный воздух, тёплый свет, кинематографичный кадр.</p><span class="chain-port out" aria-hidden="true"></span></div>
-        </div>
-        <div class="chain-node chain-output" id="chain-photo"><span class="chain-kicker">04 / ИЗОБРАЖЕНИЕ</span><div class="chain-preview"><img src="assets/paper-city/mountain-day.webp" alt="Трамвай на заснеженном горном виадуке" loading="lazy"></div><strong>Кадр собран</strong><p>Промпт, герой и стиль сошлись в одном результате.</p><span class="chain-port in" aria-hidden="true"></span><span class="chain-port out" aria-hidden="true"></span></div>
-        <a class="chain-node chain-output chain-video" id="chain-video" href="#video-result"><span class="chain-kicker">05 / ВИДЕО</span><div class="chain-preview"><img src="assets/paper-city/mountain-day.webp" alt="Превью короткой видеосцены с трамваем в горах" loading="lazy"><span class="chain-play" aria-hidden="true"></span></div><strong>Кадр оживает</strong><p>Открыть видеопревью <span aria-hidden="true">→</span></p><span class="chain-port in" aria-hidden="true"></span></a>
-      </div>
-    </section>
-
-    <section class="lab wrap" id="lab" aria-labelledby="lab-title">
-      <div class="section-heading">
-        <div><p class="eyebrow" id="lab-eyebrow">КАДР 03 / ИНТЕРАКТИВНАЯ СХЕМА</p><h2 id="lab-title">Попробуйте собрать <em>кадр сами.</em></h2></div>
-        <p>Каждая нода отвечает за одно решение. Связи показывают, как герой, место, свет и движение камеры складываются в выбранный кадр.</p>
-      </div>
+      <p class="story-footnote">Выберите кадр, затем измените его настройки в схеме ниже <span aria-hidden="true">↓</span></p>
       <div class="flow-stage" id="flow-stage" aria-label="Нодовая схема выбранного кадра">
         <div class="stage-grid" aria-hidden="true"></div>
         <svg class="flow-connections" id="flow-connections" aria-hidden="true">
@@ -126,6 +129,6 @@
     </section>
   </main>
   <footer class="footer wrap"><span>ГОРОД / В НОВОМ СВЕТЕ</span><span>Концепт интерактивной страницы · 2026</span></footer>
-  <script src="script.js?v=20261103-green-spacing"></script>
+  <script src="script.js?v=20261103-process-first"></script>
 </body>
 </html>
