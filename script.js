@@ -1,8 +1,113 @@
-const data={city:{index:'01 / МЕСТО',title:'Город после дождя',text:'Старинные фасады и мокрая мостовая задают пространство сцены. Они остаются узнаваемыми при смене освещения.'},tram:{index:'02 / ГЕРОЙ',title:'Городской трамвай',text:'Старинный трамвай становится главным героем кадра. Его маршрут ведёт взгляд через город.'},light:{index:'03 / АТМОСФЕРА',title:'Ночной свет',text:'Время суток меняет настроение сцены. Выберите другое освещение и посмотрите, что останется прежним.'},motion:{index:'04 / КАМЕРА',title:'Движение по улице',text:'Направление улицы и рельсов ведёт взгляд к трамваю и помогает почувствовать движение.'},result:{index:'05 / РЕЗУЛЬТАТ',title:'Готовый кадр',text:'Все решения встречаются здесь. Измените один шаг, сохранив остальные.'}};
-const stage=document.querySelector('#stage'),infoIndex=document.querySelector('#info-index'),infoTitle=document.querySelector('#info-title'),infoText=document.querySelector('#info-text'),lightControls=document.querySelector('#light-controls'),outputImage=document.querySelector('#output-image'),outputTime=document.querySelector('#output-time'),packet=document.querySelector('#route-packet'),compare=document.querySelector('#compare'),slider=document.querySelector('#compare-slider'),before=document.querySelector('#compare-before'),divider=document.querySelector('#compare-divider');
-let active='light',time='night',changeTimer;
-function selectNode(node){active=node;const item=data[node];stage.dataset.active=node;infoIndex.textContent=item.index;infoTitle.textContent=item.title;infoText.textContent=item.text;lightControls.hidden=node!=='light';document.querySelectorAll('[data-node]').forEach(el=>{const selected=el.dataset.node===node;el.classList.toggle('active',selected);if(el.classList.contains('step-tab'))el.setAttribute('aria-pressed',String(selected));if(el.classList.contains('node-card'))el.setAttribute('aria-pressed',String(selected));});}
-document.querySelectorAll('[data-node]').forEach(el=>el.addEventListener('click',()=>selectNode(el.dataset.node)));
-function setCompare(value){before.style.width=value+'%';divider.style.left=value+'%';const frame=before.parentElement;before.querySelector('img').style.width=frame.clientWidth+'px';}
-function setTime(next){if(next===time)return;clearTimeout(changeTimer);time=next;selectNode('light');document.querySelector('#night-button').setAttribute('aria-pressed',String(next==='night'));document.querySelector('#dawn-button').setAttribute('aria-pressed',String(next==='dawn'));packet.classList.remove('running');void packet.getBoundingClientRect();if(!matchMedia('(prefers-reduced-motion: reduce)').matches)packet.classList.add('running');const delay=matchMedia('(prefers-reduced-motion: reduce)').matches?0:850;changeTimer=setTimeout(()=>{outputImage.src=`assets/paper-city/${next}.png`;outputImage.alt=next==='night'?'Ночной город с трамваем':'Город с трамваем на рассвете';outputTime.textContent=next==='night'?'НОЧЬ':'РАССВЕТ';if(active==='light')infoTitle.textContent=next==='night'?'Ночной свет':'Рассветный свет';outputImage.classList.remove('changing');void outputImage.getBoundingClientRect();outputImage.classList.add('changing');if(next==='dawn'){compare.hidden=false;setCompare(Number(slider.value));}else compare.hidden=true;},delay);}
-document.querySelector('#dawn-button').addEventListener('click',()=>setTime('dawn'));document.querySelector('#night-button').addEventListener('click',()=>setTime('night'));document.querySelector('#reset-button').addEventListener('click',()=>{setTime('night');selectNode('light')});document.querySelector('#replay-button').addEventListener('click',()=>{setTime('night');document.querySelector('#lab').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});setTimeout(()=>document.querySelector('#dawn-button').focus(),100)});document.querySelector('#reveal-button').addEventListener('click',()=>{document.querySelector('#lab').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});selectNode('light')});slider.addEventListener('input',()=>setCompare(Number(slider.value)));window.addEventListener('resize',()=>setCompare(Number(slider.value)));selectNode('light');setCompare(50);
+const data = {
+  city: { index: '01 / МЕСТО', title: 'Старый город', text: 'Место задаёт окружение героя. Отправьте тот же трамвай к морю и посмотрите, что изменится.' },
+  tram: { index: '02 / ГЕРОЙ', title: 'Городской трамвай', text: 'Один и тот же трамвай остаётся героем каждого кадра. Меняются обстоятельства вокруг него.' },
+  light: { index: '03 / АТМОСФЕРА', title: 'Ночной свет', text: 'Освещение меняет настроение знакомой сцены. Попробуйте рассвет, не меняя место и героя.' },
+  motion: { index: '04 / КОМПОЗИЦИЯ', title: 'Путь взгляда', text: 'Изгиб рельсов ведёт взгляд к трамваю и создаёт ощущение движения в кадре.' },
+  result: { index: '05 / РЕЗУЛЬТАТ', title: 'Серия кадров', text: 'Один герой может оказаться в разных местах и при разном свете. Каждое решение видно в результате.' }
+};
+const $ = selector => document.querySelector(selector);
+const stage = $('#stage');
+const infoIndex = $('#info-index');
+const infoTitle = $('#info-title');
+const infoText = $('#info-text');
+const outputImage = $('#output-image');
+const outputTime = $('#output-time');
+const packet = $('#route-packet');
+const compare = $('#compare');
+const slider = $('#compare-slider');
+const before = $('#compare-before');
+const divider = $('#compare-divider');
+const imagePath = name => `assets/paper-city/${name}.png`;
+let active = 'city';
+let variant = 'night';
+let changeTimer;
+
+function selectNode(node) {
+  active = node;
+  stage.dataset.active = node;
+  const item = data[node];
+  infoIndex.textContent = item.index;
+  infoTitle.textContent = node === 'light' && variant === 'dawn' ? 'Рассветный свет' : node === 'city' && variant === 'coast' ? 'Приморская набережная' : item.title;
+  infoText.textContent = item.text;
+  $('#light-controls').hidden = node !== 'light';
+  $('#location-controls').hidden = node !== 'city';
+  document.querySelectorAll('[data-node]').forEach(el => {
+    const selected = el.dataset.node === node;
+    el.classList.toggle('active', selected);
+    el.setAttribute('aria-pressed', String(selected));
+  });
+}
+
+function setCompare(value) {
+  before.style.width = `${value}%`;
+  divider.style.left = `${value}%`;
+  before.querySelector('img').style.width = `${before.parentElement.clientWidth}px`;
+}
+
+function updateControls() {
+  $('#city-button').setAttribute('aria-pressed', String(variant !== 'coast'));
+  $('#coast-button').setAttribute('aria-pressed', String(variant === 'coast'));
+  $('#night-button').setAttribute('aria-pressed', String(variant !== 'dawn'));
+  $('#dawn-button').setAttribute('aria-pressed', String(variant === 'dawn'));
+}
+
+function updateComparison() {
+  const isCoast = variant === 'coast';
+  $('#compare-title').innerHTML = isCoast ? 'Место изменилось.<br><em>Герой остался.</em>' : 'Свет изменился.<br><em>Место осталось.</em>';
+  $('.compare-copy p:not(.eyebrow)').textContent = isCoast
+    ? 'Вы переместили трамвай из старого города к морю. Та же нода героя участвует в новом результате.'
+    : 'Вы изменили освещение старого города. Трамвай и место сохранились — настроение кадра стало другим.';
+  const after = $('#compare-after-image');
+  after.src = imagePath(variant);
+  after.alt = isCoast ? 'Тот же трамвай на приморской набережной' : 'Тот же трамвай на рассвете';
+  $('#compare-left-label').textContent = isCoast ? 'СТАРЫЙ ГОРОД' : 'НОЧЬ';
+  $('#compare-right-label').textContent = isCoast ? 'У МОРЯ' : 'РАССВЕТ';
+  setCompare(Number(slider.value));
+}
+
+function setVariant(next, node) {
+  if (next === variant) { selectNode(node); return; }
+  clearTimeout(changeTimer);
+  variant = next;
+  selectNode(node);
+  updateControls();
+  packet.classList.remove('running');
+  packet.style.offsetPath = node === 'city'
+    ? "path('M315 125 C445 125 420 275 615 275')"
+    : "path('M315 385 C440 385 435 295 615 295')";
+  void packet.getBoundingClientRect();
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduced) packet.classList.add('running');
+  changeTimer = setTimeout(() => {
+    outputImage.src = imagePath(next);
+    outputImage.alt = next === 'coast' ? 'Трамвай на приморской набережной' : next === 'dawn' ? 'Трамвай в старом городе на рассвете' : 'Ночной город с трамваем';
+    outputTime.textContent = next === 'coast' ? 'У МОРЯ' : next === 'dawn' ? 'РАССВЕТ' : 'НОЧЬ';
+    $('.output-overlay').textContent = next === 'coast' ? 'ПОБЕРЕЖЬЕ / 02' : 'ГОРОД / 01';
+    outputImage.classList.remove('changing');
+    void outputImage.getBoundingClientRect();
+    outputImage.classList.add('changing');
+    compare.hidden = next === 'night';
+    if (!compare.hidden) updateComparison();
+  }, reduced ? 0 : 850);
+}
+
+document.querySelectorAll('[data-node]').forEach(el => el.addEventListener('click', () => selectNode(el.dataset.node)));
+$('#city-button').addEventListener('click', () => setVariant('night', 'city'));
+$('#coast-button').addEventListener('click', () => setVariant('coast', 'city'));
+$('#night-button').addEventListener('click', () => setVariant('night', 'light'));
+$('#dawn-button').addEventListener('click', () => setVariant('dawn', 'light'));
+$('#reset-button').addEventListener('click', () => setVariant('night', 'city'));
+$('#replay-button').addEventListener('click', () => {
+  setVariant('night', 'city');
+  $('#lab').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+  setTimeout(() => $('#coast-button').focus(), 100);
+});
+$('#reveal-button').addEventListener('click', () => {
+  $('#lab').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+  selectNode('city');
+});
+slider.addEventListener('input', () => setCompare(Number(slider.value)));
+window.addEventListener('resize', () => setCompare(Number(slider.value)));
+selectNode('city');
+updateControls();
+setCompare(50);
