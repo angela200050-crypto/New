@@ -156,7 +156,7 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--accen
 
 /* Keep the complete source reference visible at every screen size. */
 .hero-reference{display:flex;align-items:center;aspect-ratio:1672/941;max-height:none;background:#101821}
-.hero-reference img{width:100%;height:100%;object-fit:cover;object-position:85% center;transform:none}
+.hero-reference img{width:100%;height:100%;object-fit:cover;object-position:78% center;transform:none}
 @media(min-width:901px){.hero-reference{flex:1;aspect-ratio:auto}}
 
 /* Descriptions use white consistently throughout the page. */
@@ -174,3 +174,58 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--accen
   .intro-aside p{font-size:19px}
   .output-intro>p:last-child,.chain-heading>p:last-child,.section-heading>p,.closing>p:not(.eyebrow){font-size:19px}
 }
+
+/* Green marks completed results and the final invitation. */
+:root{
+  --result-border:#46685a;
+  --result-highlight:#b0dcc1;
+  --result-background:radial-gradient(ellipse at 50% -28%,#244638 0,transparent 57%),radial-gradient(#9bc5ad29 1px,transparent 1px) 0 0/16px 16px,linear-gradient(145deg,#14251e,#0d1915 67%,#14271f);
+}
+.closing,.result-node,.chain-output{
+  background:var(--result-background);
+  border-color:var(--result-border);
+  box-shadow:0 18px 40px #0005,inset 0 1px 0 #a0edbc20;
+}
+.result-node{border-width:2px;padding:14px}
+.result-node .node-kicker,.result-node .node-type,.chain-output>.chain-kicker{color:var(--result-highlight)}
+.result-node .node-port,.chain-output .chain-port{background:#90cfaa;box-shadow:0 0 0 2px #90cfaa,0 0 15px #90cfaa40}
+.result-caption{padding:18px 6px 10px}
+.chain-video:hover{border-color:#90cfaa}
+#chain-video-edge{stroke:#90cfaa}
+
+/* Leave room for the connecting paths and their ports. */
+@media(min-width:1181px){
+  .flow-stage{gap:52px;padding:46px 36px}
+  .choice-stack{gap:22px;min-height:540px}
+}
+@media(min-width:901px) and (max-width:1180px){
+  .flow-stage{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:48px;padding:34px}
+  .choice-stack{gap:20px;min-height:510px}
+  .flow-stage .flow-connections,.flow-stage .node-port{display:none}
+  .render-node,.result-node{min-height:360px}
+  .result-image{min-height:240px}
+}
+@media(max-width:900px){.flow-stage{gap:36px}.choice-stack{gap:18px}}
+@media(max-width:650px){.choice-stack{gap:20px}.flow-stage{padding:20px 16px}}
+
+/* One accent color for all connections in the materials chain. */
+#chain-prompt-edge,#chain-reference-edge,#chain-style-edge,#chain-video-edge{stroke:#90cfaa}
+.chain-stage .chain-port{background:#90cfaa;box-shadow:0 0 0 2px #90cfaa}
+
+/* Consistent breathing room: title → description → content. */
+:root{--heading-copy-gap:28px;--copy-content-gap:40px}
+.intro-aside{margin-top:var(--heading-copy-gap)}
+.intro-aside p{margin-top:0;margin-bottom:var(--copy-content-gap)}
+.intro-heading{margin-bottom:var(--copy-content-gap)}
+.output-intro{margin-bottom:var(--copy-content-gap)}
+.output-intro>p:last-child,.chain-heading>p:last-child,.section-heading>p{margin-top:var(--heading-copy-gap);margin-bottom:0}
+.chain-heading,.section-heading{margin-bottom:var(--copy-content-gap)}
+.closing>p:not(.eyebrow){margin-top:var(--heading-copy-gap);margin-bottom:var(--copy-content-gap)}
+@media(max-width:650px){
+  :root{--heading-copy-gap:24px;--copy-content-gap:32px}
+}
+
+/* Make the recurring hero readable in the reference card. */
+.chain-ref{flex-direction:column;align-items:stretch;gap:12px;font-size:14px}
+.chain-ref img{width:100%;height:auto;aspect-ratio:1.5;object-fit:cover;object-position:78% center;border-radius:8px}
+@media(min-width:651px) and (max-width:1050px){.chain-ref img{aspect-ratio:1.25}}
