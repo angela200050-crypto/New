@@ -21,7 +21,7 @@
           <h1 id="page-title">Один объект — <em>несколько продолжений.</em></h1>
         </div>
         <div class="intro-aside">
-          <p>Один трамвай появляется в разных кадрах. Меняйте место, свет и движение камеры — герой остаётся узнаваемым. Выберите кадр и посмотрите, как он собран.</p>
+          <p>Один трамвай проходит через разные места и времена суток. Из кадров складываются видеосцена, звук и сценарий. Выберите кадр и попробуйте собрать своё продолжение.</p>
           <button class="primary" id="reveal-button" type="button">Разобрать кадр <span class="arrow-icon" aria-hidden="true"></span></button>
         </div>
       </div>
@@ -31,8 +31,8 @@
           <span class="story-card-body"><span class="story-card-top"><strong>Ночной город</strong><span class="story-dot" aria-hidden="true"></span></span><span class="story-description">Знакомый трамвай начинает путь в старом городе.</span><span class="story-tags"><span>Старый город</span><span>Ночь</span></span></span>
         </button>
         <button class="story-card" type="button" data-shot="1" aria-pressed="false">
-          <span class="story-image"><img src="assets/paper-city/dawn.webp" alt="Тот же трамвай в старом городе на рассвете"><span class="story-image-index">02 / ПРОДОЛЖЕНИЕ</span></span>
-          <span class="story-card-body"><span class="story-card-top"><strong>Первый свет</strong><span class="story-dot" aria-hidden="true"></span></span><span class="story-description">Тот же маршрут встречает новый день.</span><span class="story-tags"><span>Старый город</span><span>Рассвет</span></span></span>
+          <span class="story-image"><img src="assets/paper-city/mountain-day.webp" alt="Тот же трамвай в снежных горах днём"><span class="story-image-index">02 / ДРУГОЙ МАРШРУТ</span></span>
+          <span class="story-card-body"><span class="story-card-top"><strong>Горный перевал</strong><span class="story-dot" aria-hidden="true"></span></span><span class="story-description">Герой сворачивает на заснеженный виадук.</span><span class="story-tags"><span>Горы</span><span>День</span></span></span>
         </button>
         <button class="story-card" type="button" data-shot="2" aria-pressed="true">
           <span class="story-image"><img src="assets/paper-city/coast.webp" alt="Тот же трамвай на приморской набережной на рассвете"><span class="story-image-index">03 / НОВЫЙ МАРШРУТ</span></span>
@@ -40,11 +40,17 @@
         </button>
       </div>
       <p class="story-footnote">Нажмите на кадр, чтобы раскрыть его настройки <span aria-hidden="true">↓</span></p>
+      <div class="output-intro"><p class="eyebrow">ОДНА ИСТОРИЯ / РАЗНЫЕ ФОРМАТЫ</p><p>Кадры — только начало. Из этого же маршрута можно представить и другие результаты.</p></div>
+      <div class="output-grid" aria-label="Форматы результата">
+        <article class="output-card output-video"><div class="output-label">01 / ВИДЕО</div><video controls playsinline preload="none" poster="assets/paper-city/mountain-day.webp" aria-label="Пример видеосцены: камера приближается к трамваю в горах"><source src="assets/paper-city/mountain-motion.mp4" type="video/mp4"></video><div class="output-copy"><strong>Короткая видеосцена</strong><p>Камера приближается к трамваю на горном маршруте.</p></div></article>
+        <article class="output-card output-audio"><div class="output-label">02 / ЗВУК</div><div class="sound-art" aria-hidden="true"><span>♪</span><div class="sound-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="output-copy"><strong>Звуковая атмосфера</strong><p>Звонок, ритм колёс и ветер задают настроение маршрута.</p><audio controls preload="none" aria-label="Прослушать звуковую атмосферу трамвая"><source src="assets/paper-city/tram-sound.mp3" type="audio/mpeg"></audio></div></article>
+        <article class="output-card output-script"><div class="output-label">03 / СЦЕНАРИЙ</div><div class="script-sheet"><span>СЦЕНА 02 · ГОРНЫЙ ПЕРЕВАЛ</span><p>Трамвай выходит из тени елей на открытый виадук. Камера движется рядом с вагоном. Впереди — залитые солнцем снежные вершины.</p><small>Место: горы &nbsp;·&nbsp; Свет: день &nbsp;·&nbsp; Камера: проводка</small></div><div class="output-copy"><strong>Сценарий сцены</strong><p>Те же решения превращаются в понятное описание кадра.</p></div></article>
+      </div>
     </section>
 
     <section class="lab wrap" id="lab" aria-labelledby="lab-title">
       <div class="section-heading">
-        <div><p class="eyebrow">ЗА КАДРОМ / ИНТЕРАКТИВНАЯ СХЕМА</p><h2 id="lab-title">Как собирается <em>кадр 03.</em></h2></div>
+        <div><p class="eyebrow" id="lab-eyebrow">КАДР 03 / ИНТЕРАКТИВНАЯ СХЕМА</p><h2 id="lab-title">Попробуйте собрать <em>кадр сами.</em></h2></div>
         <p>Каждая нода отвечает за одно решение. Связи показывают, как герой, место, свет и движение камеры складываются в выбранный кадр.</p>
       </div>
       <div class="flow-stage" id="flow-stage" aria-label="Нодовая схема выбранного кадра">
@@ -61,19 +67,19 @@
           <div class="flow-node choice-node" id="place-node">
             <div class="node-header"><span class="node-kicker">02 / МЕСТО</span><span class="node-type">СЦЕНА</span></div>
             <h3>Где происходит действие?</h3><p>Изменится окружение выбранного кадра.</p>
-            <div class="choice-buttons" role="group" aria-label="Место действия"><button type="button" data-place="city" aria-pressed="false">Старый город</button><button type="button" data-place="coast" aria-pressed="true">У моря</button></div>
+            <div class="choice-buttons" role="group" aria-label="Место действия"><button type="button" data-place="city" aria-pressed="false">Старый город</button><button type="button" data-place="coast" aria-pressed="true">У моря</button><button type="button" data-place="mountain" aria-pressed="false">Горы</button></div>
             <span class="node-port in" aria-hidden="true"></span><span class="node-port out" aria-hidden="true"></span>
           </div>
           <div class="flow-node choice-node" id="light-node">
             <div class="node-header"><span class="node-kicker">03 / СВЕТ</span><span class="node-type">АТМОСФЕРА</span></div>
             <h3>Когда происходит действие?</h3><p>Изменится освещение, место сохранится.</p>
-            <div class="choice-buttons" role="group" aria-label="Время суток"><button type="button" data-light="night" aria-pressed="false">Ночь</button><button type="button" data-light="dawn" aria-pressed="true">Рассвет</button></div>
+            <div class="choice-buttons" role="group" aria-label="Время суток"><button type="button" data-light="night" aria-pressed="false">Ночь</button><button type="button" data-light="dawn" aria-pressed="true">Рассвет</button><button type="button" data-light="day" aria-pressed="false">День</button></div>
             <span class="node-port in" aria-hidden="true"></span><span class="node-port out" aria-hidden="true"></span>
           </div>
           <div class="flow-node choice-node" id="camera-node">
             <div class="node-header"><span class="node-kicker">04 / КАМЕРА</span><span class="node-type">ДВИЖЕНИЕ</span></div>
             <h3>Как показать героя?</h3><p>Движение камеры меняет акцент кадра.</p>
-            <div class="choice-buttons" role="group" aria-label="Движение камеры"><button type="button" data-camera="wide" aria-pressed="false">Общий план</button><button type="button" data-camera="push" aria-pressed="true">Плавный наезд</button></div>
+            <div class="choice-buttons" role="group" aria-label="Движение камеры"><button type="button" data-camera="wide" aria-pressed="false">Общий план</button><button type="button" data-camera="push" aria-pressed="true">Плавный наезд</button><button type="button" data-camera="track" aria-pressed="false">Проводка</button></div>
             <span class="node-port in" aria-hidden="true"></span><span class="node-port out" aria-hidden="true"></span>
           </div>
         </div>

@@ -2,15 +2,17 @@ const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const prefersReducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const imagePath = (place, light) => {
-  const names = { 'city-night': 'night', 'city-dawn': 'dawn', 'coast-night': 'coast-night', 'coast-dawn': 'coast' };
+  const names = { 'city-night': 'night', 'city-dawn': 'dawn', 'city-day': 'city-day', 'coast-night': 'coast-night', 'coast-dawn': 'coast', 'coast-day': 'coast-day', 'mountain-night': 'mountain-night', 'mountain-dawn': 'mountain-dawn', 'mountain-day': 'mountain-day' };
   return `assets/paper-city/${names[`${place}-${light}`]}.webp`;
 };
-const placeName = place => place === 'coast' ? 'У моря' : 'Старый город';
-const lightName = light => light === 'dawn' ? 'Рассвет' : 'Ночь';
-const cameraName = camera => camera === 'push' ? 'Плавный наезд' : 'Общий план';
-const shotTitle = shot => ({ 'city-night': 'Ночной город', 'city-dawn': 'Первый свет', 'coast-night': 'Огни набережной', 'coast-dawn': 'Дорога к морю' })[`${shot.place}-${shot.light}`];
+const placeName = place => ({ city: 'Старый город', coast: 'У моря', mountain: 'Горы' })[place];
+const lightName = light => ({ night: 'Ночь', dawn: 'Рассвет', day: 'День' })[light];
+const cameraName = camera => ({ wide: 'Общий план', push: 'Плавный наезд', track: 'Проводка' })[camera];
+const shotTitle = shot => ({ 'city-night': 'Ночной город', 'city-dawn': 'Первый свет', 'city-day': 'Город при свете дня', 'coast-night': 'Огни набережной', 'coast-dawn': 'Дорога к морю', 'coast-day': 'Солнечная набережная', 'mountain-night': 'Ночной перевал', 'mountain-dawn': 'Первые лучи в горах', 'mountain-day': 'Горный перевал' })[`${shot.place}-${shot.light}`];
 const shotDescription = shot => {
   if (shot.camera === 'push') return 'Камера приближается к герою на новом маршруте.';
+  if (shot.camera === 'track') return 'Камера движется рядом с трамваем.';
+  if (shot.place === 'mountain') return 'Трамвай проходит по снежному виадуку.';
   if (shot.place === 'coast') return 'Знакомый трамвай на приморской набережной.';
   if (shot.light === 'dawn') return 'Тот же маршрут встречает новый день.';
   return 'Знакомый трамвай начинает путь в старом городе.';
@@ -18,7 +20,7 @@ const shotDescription = shot => {
 const shotAlt = shot => `Бордовый трамвай: ${placeName(shot.place).toLowerCase()}, ${lightName(shot.light).toLowerCase()}`;
 const startingShots = [
   { place: 'city', light: 'night', camera: 'wide' },
-  { place: 'city', light: 'dawn', camera: 'wide' },
+  { place: 'mountain', light: 'day', camera: 'track' },
   { place: 'coast', light: 'dawn', camera: 'push' }
 ];
 const shots = startingShots.map(shot => ({ ...shot }));
@@ -41,10 +43,11 @@ function renderStoryboard() {
     image.src = imagePath(shot.place, shot.light);
     image.alt = shotAlt(shot);
     image.classList.toggle('camera-push', shot.camera === 'push');
+    image.classList.toggle('camera-track', shot.camera === 'track');
     card.querySelector('.story-card-top strong').textContent = shotTitle(shot);
     card.querySelector('.story-description').textContent = shotDescription(shot);
     const tags = card.querySelector('.story-tags');
-    tags.replaceChildren(...[placeName(shot.place), lightName(shot.light), ...(shot.camera === 'push' ? ['Наезд'] : [])].map(label => {
+    tags.replaceChildren(...[placeName(shot.place), lightName(shot.light), ...(shot.camera === 'push' ? ['Наезд'] : shot.camera === 'track' ? ['Проводка'] : [])].map(label => {
       const span = document.createElement('span');
       span.textContent = label;
       return span;
@@ -67,10 +70,11 @@ function renderResult() {
   image.src = imagePath(shot.place, shot.light);
   image.alt = shotAlt(shot);
   image.classList.toggle('camera-push', shot.camera === 'push');
+  image.classList.toggle('camera-track', shot.camera === 'track');
   image.classList.remove('frame-arrive');
   void image.offsetWidth;
   image.classList.add('frame-arrive');
-  $('#lab-title').innerHTML = `Как собирается <em>кадр ${String(selected + 1).padStart(2, '0')}.</em>`;
+  $('#lab-eyebrow').textContent = `КАДР ${String(selected + 1).padStart(2, '0')} / ИНТЕРАКТИВНАЯ СХЕМА`;
   $('#result-index').textContent = `06 / КАДР ${String(selected + 1).padStart(2, '0')}`;
   $('#result-title').textContent = shotTitle(shot);
   $('#result-settings').textContent = `${placeName(shot.place)} · ${lightName(shot.light)} · ${cameraName(shot.camera)}`;
@@ -97,9 +101,11 @@ function renderCompare() {
   before.src = imagePath(baseline.place, baseline.light);
   before.alt = `Исходный кадр: ${shotAlt(baseline)}`;
   before.classList.toggle('camera-push', baseline.camera === 'push');
+  before.classList.toggle('camera-track', baseline.camera === 'track');
   after.src = imagePath(shot.place, shot.light);
   after.alt = `Новый кадр: ${shotAlt(shot)}`;
   after.classList.toggle('camera-push', shot.camera === 'push');
+  after.classList.toggle('camera-track', shot.camera === 'track');
   const changed = ['place', 'light', 'camera'].filter(key => shot[key] !== baseline[key]);
   const singleChange = changed.length === 1 ? changed[0] : null;
   const title = singleChange === 'camera' ? 'Камера меняет <em>историю кадра.</em>' : singleChange === 'light' ? 'Другой свет — <em>другое настроение.</em>' : singleChange === 'place' ? 'Новый маршрут — <em>тот же герой.</em>' : 'Новые решения — <em>новый кадр.</em>';
