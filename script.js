@@ -50,7 +50,8 @@ function drawMediaConnections() {
   ['prompt', 'reference', 'style'].forEach(name => {
     const from = point(`#chain-${name} .out`);
     const bend = Math.max(24, (to.x - from.x) * .45);
-    const path = `M ${from.x} ${from.y} C ${from.x + bend} ${from.y} ${to.x - bend} ${to.y} ${to.x} ${to.y}`;
+    const styleTarget = name === 'style' ? point('#chain-generator .style-input-port') : null;
+    const path = styleTarget ? `M ${from.x} ${from.y} L ${styleTarget.x} ${styleTarget.y}` : `M ${from.x} ${from.y} C ${from.x + bend} ${from.y} ${to.x - bend} ${to.y} ${to.x} ${to.y}`;
     $(`#chain-${name}-edge`).setAttribute('d', path);
   });
   const from = point('#chain-generator .out');
