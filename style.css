@@ -38,25 +38,28 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--accen
 /* Keep the reading order consistent: heading, explanation, action, then examples. */
 .intro-heading{display:block;margin-bottom:48px}
 .intro h1{max-width:none;font-size:clamp(45px,5.1vw,76px);line-height:1.08;text-wrap:initial;white-space:nowrap}
-.intro-aside{max-width:760px;margin-top:23px;padding-bottom:0}
-.intro-aside p{max-width:720px;margin-bottom:22px}
+.intro-aside{max-width:none;margin-top:23px;padding-bottom:0}
+.intro-aside p{max-width:none;margin-bottom:22px}
 .section-heading{display:block}
-.section-heading>p{max-width:690px;margin:18px 0 0}
+.section-heading>p{max-width:none;margin:18px 0 0}
 .output-intro{display:block}
-.output-intro>p:last-child{max-width:680px;margin-top:12px}
+.output-intro h2{margin:0;font-size:clamp(38px,4.4vw,62px);font-weight:500;letter-spacing:-.055em;line-height:1.1}
+.output-intro>p:last-child{max-width:none;margin-top:12px}
+.closing>p:not(.eyebrow),.compare-copy p:not(.eyebrow){max-width:none}
 @media(max-width:900px){.intro h1{white-space:normal;font-size:clamp(47px,7.2vw,68px)}.intro-aside{margin-top:22px}}
-@media(max-width:650px){.intro h1{font-size:clamp(43px,11.7vw,58px)}.intro-heading{margin-bottom:36px}.section-heading>p{margin-top:16px}}
+@media(max-width:650px){.intro h1{font-size:clamp(43px,11.7vw,58px)}.intro-heading{margin-bottom:36px}.section-heading>p{margin-top:16px}.output-intro h2{font-size:clamp(38px,9vw,50px)}}
 
 .primary{
-  border:5px solid transparent;
-  padding:11px 20px;
+  border:0;
+  padding:13px 23px;
   color:#27170f;
-  background:linear-gradient(115deg,#ffd097 0%,#f5a65e 52%,#df7740 100%) padding-box,linear-gradient(145deg,#5c4a42,#29292f) border-box;
-  box-shadow:0 12px 30px #0007,0 10px 32px #ee8b4a38,inset 0 1px 0 #fff8;
+  background:linear-gradient(115deg,#ffd097 0%,#f5a65e 52%,#df7740 100%);
+  box-shadow:0 11px 27px #0006,0 8px 26px #ee8b4a2b;
   transition:transform .25s var(--ease),box-shadow .25s ease,filter .25s ease;
 }
 .primary:hover{
-  background:linear-gradient(115deg,#ffdbab 0%,#ffb970 52%,#ee8650 100%) padding-box,linear-gradient(145deg,#6b5548,#303036) border-box;
-  box-shadow:0 16px 38px #0008,0 11px 38px #ee8b4a66,inset 0 1px 0 #fff9;
+  background:linear-gradient(115deg,#ffdbab 0%,#ffb970 52%,#ee8650 100%);
+  box-shadow:0 14px 32px #0007,0 10px 34px #ee8b4a4d;
 }
 .primary:active{transform:translateY(0);box-shadow:0 5px 15px #0007,0 4px 18px #ee8b4a40}
+.primary .arrow-icon{display:block;flex:none;align-self:center;vertical-align:initial;margin:0;transform:translateY(-1px)}
